@@ -49,6 +49,10 @@ namespace VentaAutomoviles.Models
     public class LoginViewModel
     {
         [Required]
+        [Display(Name = "Tipo de usuario")]
+        public string Role { get; set; }
+
+        [Required]
         [Display(Name = "Correo electrónico")]
         [EmailAddress]
         public string Email { get; set; }

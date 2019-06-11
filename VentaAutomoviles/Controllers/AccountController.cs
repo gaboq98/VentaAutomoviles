@@ -79,7 +79,17 @@ namespace VentaAutomoviles.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    if(string.Compare( model.Role, "Administrador") == 0)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    } else if (string.Compare(model.Role, "Facturador") == 0)
+                    {
+                        return RedirectToAction("About", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Contact", "Home");
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -156,7 +166,7 @@ namespace VentaAutomoviles.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //User.Identity.GetUserName()
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -392,7 +402,7 @@ namespace VentaAutomoviles.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //
