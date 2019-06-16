@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="34405c0ff8de4e60a28706a6269049df" Name="Diagram1">
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Abono" Width="1.5" PointX="15.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Automovil" Width="1.5" PointX="5.25" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Canton" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.CaracteristicasPorAutomovil" Width="1.5" PointX="7.5" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Cliente" Width="1.5" PointX="11.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Consignacion" Width="1.5" PointX="7.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Credito" Width="1.5" PointX="10.5" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Despacho" Width="1.5" PointX="10.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Detalle" Width="1.5" PointX="7.5" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.DetallePorFactura" Width="1.5" PointX="9.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Direccion" Width="1.5" PointX="6" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Empleado" Width="1.5" PointX="5.25" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.EmpleadoFabrica" Width="1.5" PointX="13.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Extra" Width="1.5" PointX="8.25" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.ExtrasPorAutomovil" Width="1.5" PointX="10.5" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Fabrica" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Factura" Width="1.5" PointX="7.5" PointY="34.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Fotografia" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.FotografiaPorAutomovil" Width="1.5" PointX="7.5" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Inventario" Width="1.5" PointX="7.5" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Marca" Width="1.5" PointX="0.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Modelo" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Pago" Width="1.5" PointX="13.5" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Pais" Width="1.5" PointX="1.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Pedido" Width="1.5" PointX="13.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Provincia" Width="1.5" PointX="1.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Sucursal" Width="1.5" PointX="11.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.TipoAutomovil" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.TipoCombustible" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.TipoEmpleadoFabrica" Width="1.5" PointX="11.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.TipoEmpleadoSucursal" Width="1.5" PointX="3" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.TipoPago" Width="1.5" PointX="11.25" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutomovilesModel.Venta" Width="1.5" PointX="13.5" PointY="22.875" IsExpanded="true" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_abonoCredito" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_abonoPago" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_caracteristicasAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_consignacionAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_creditoAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_despachoAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_detalleAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_extraAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_fpaAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_inventarioAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_modeloAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_pagoAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_pedidoAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_tipoAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_tipoCombustible" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_ventaAutomovil" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_cantonProvincia" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_direccionCanton" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_clienteDireccion" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_creditoCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_facturaCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_pagoCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_pedidoCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_ventaCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_consignacionSucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_creditoSucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_despachoFabrica" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_despachoPedido" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_despachoSucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_dpfDetalle" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_dpfFactura" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_direccionPais" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_direccionProvincia" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_empleadoDireccion" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_empleadoFabricaDireccion" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_fabricaDireccion" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_sucursalDireccion" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_empleadoSucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_facturaEmpleado" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_tipoEmpleadoSucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_empleadoFabrica" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_tipoEmpleadoFabrica" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_extra" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_pedidoFabrica" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_facturaSucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_fpaFotografia" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_inventarioSucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_modeloMarca" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_pagoSucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_provinciaPais" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_pedidoSucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_ventaSucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_venta_tipoPago" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

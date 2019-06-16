@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -15,6 +18,7 @@ namespace VentaAutomoviles.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private VentaAutomovilesEntities db = new VentaAutomovilesEntities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -149,6 +153,14 @@ namespace VentaAutomoviles.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            List<object> list = new List<object>
+            {
+                db.Pais.Find(52) // Para que sea solo CR
+            };
+            IEnumerable<object> en = list;
+            ViewBag.IdPais = new SelectList(en, "IdPais", "Nombre");
+            ViewBag.IdProvincia = new SelectList(db.Provincia, "IdProvincia", "Nombre");
+            ViewBag.IdCanton = new SelectList(db.Canton, "IdCanton", "Nombre");
             return View();
         }
 
@@ -161,17 +173,34 @@ namespace VentaAutomoviles.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                //**//
+                SqlConnection con = new SqlConnection("metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=bdtec.database.windows.net;initial catalog=VentaAutomoviles;persist security info=True;user id=SuperUser;password=Admin420;MultipleActiveResultSets=True;App=EntityFramework&quot;");
+                SqlCommand cmd = new SqlCommand("sp_ClienteInsert", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@idPais", SqlDbType.Int).Value = model.Pais;
+                cmd.Parameters.Add("@idProvincia", SqlDbType.Int).Value = model.Provincia;
+                cmd.Parameters.Add("@idCanton", SqlDbType.Int).Value = model.Canton;
+                cmd.Parameters.Add("@señas", SqlDbType.VarChar).Value = model.Señas;
+                cmd.Parameters.Add("@Nombre", SqlDbType.VarChar).Value = model.Nombre;
+                cmd.Parameters.Add("@Cedula", SqlDbType.VarChar).Value = model.Cedula;
+                cmd.Parameters.Add("@Telefono", SqlDbType.VarChar).Value = model.Telefono;
+                cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = model.Email;
+
+
+                SqlParameter returnParameter = cmd.Parameters.Add("RetVal", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+                cmd.ExecuteNonQuery();
+
+                int id = (int)returnParameter.Value;
+
+                con.Close();
+                //**//
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, IdCliente  = id };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    //User.Identity.GetUserName()
-                    // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Enviar correo electrónico con este vínculo
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
                     return RedirectToAction("Index", "Home");
                 }

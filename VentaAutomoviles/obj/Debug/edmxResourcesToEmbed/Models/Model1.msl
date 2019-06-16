@@ -1,0 +1,719 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VentaAutomovilesModelStoreContainer" CdmEntityContainer="VentaAutomovilesEntities">
+    <EntitySetMapping Name="Abono">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Abono">
+        <MappingFragment StoreEntitySet="Abono">
+          <ScalarProperty Name="IdAbono" ColumnName="IdAbono" />
+          <ScalarProperty Name="IdPago" ColumnName="IdPago" />
+          <ScalarProperty Name="IdCredito" ColumnName="IdCredito" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Automovil">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Automovil">
+        <MappingFragment StoreEntitySet="Automovil">
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdTipoAutomovil" ColumnName="IdTipoAutomovil" />
+          <ScalarProperty Name="IdModelo" ColumnName="IdModelo" />
+          <ScalarProperty Name="IdTipoCombustible" ColumnName="IdTipoCombustible" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Canton">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Canton">
+        <MappingFragment StoreEntitySet="Canton">
+          <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+          <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CaracteristicasPorAutomovil">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.CaracteristicasPorAutomovil">
+        <MappingFragment StoreEntitySet="CaracteristicasPorAutomovil">
+          <ScalarProperty Name="IdCaracteristicaAutomovil" ColumnName="IdCaracteristicaAutomovil" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Puertas" ColumnName="Puertas" />
+          <ScalarProperty Name="Pasajeros" ColumnName="Pasajeros" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Consignacion">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Consignacion">
+        <MappingFragment StoreEntitySet="Consignacion">
+          <ScalarProperty Name="IdConsignacion" ColumnName="IdConsignacion" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="Comision" ColumnName="Comision" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Credito">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Credito">
+        <MappingFragment StoreEntitySet="Credito">
+          <ScalarProperty Name="IdCredito" ColumnName="IdCredito" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="TasaInteres" ColumnName="TasaInteres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Despacho">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Despacho">
+        <MappingFragment StoreEntitySet="Despacho">
+          <ScalarProperty Name="IdDespacho" ColumnName="IdDespacho" />
+          <ScalarProperty Name="IdFabrica" ColumnName="IdFabrica" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Detalle">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Detalle">
+        <MappingFragment StoreEntitySet="Detalle">
+          <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetallePorFactura">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.DetallePorFactura">
+        <MappingFragment StoreEntitySet="DetallePorFactura">
+          <ScalarProperty Name="IdDetalleFactura" ColumnName="IdDetalleFactura" />
+          <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+          <ScalarProperty Name="IdDetalle" ColumnName="IdDetalle" />
+          <ScalarProperty Name="Linea" ColumnName="Linea" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Direccion">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Direccion">
+        <MappingFragment StoreEntitySet="Direccion">
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+          <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+          <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+          <ScalarProperty Name="Señas" ColumnName="Señas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleado">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+          <ScalarProperty Name="IdTipoEmpleadoSucursal" ColumnName="IdTipoEmpleadoSucursal" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmpleadoFabrica">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.EmpleadoFabrica">
+        <MappingFragment StoreEntitySet="EmpleadoFabrica">
+          <ScalarProperty Name="IdEmpleadoFabrica" ColumnName="IdEmpleadoFabrica" />
+          <ScalarProperty Name="IdFabrica" ColumnName="IdFabrica" />
+          <ScalarProperty Name="IdTipoEmpleadoFabrica" ColumnName="IdTipoEmpleadoFabrica" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Extra">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Extra">
+        <MappingFragment StoreEntitySet="Extra">
+          <ScalarProperty Name="IdExtra" ColumnName="IdExtra" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExtrasPorAutomovil">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.ExtrasPorAutomovil">
+        <MappingFragment StoreEntitySet="ExtrasPorAutomovil">
+          <ScalarProperty Name="IdExtraAutomovil" ColumnName="IdExtraAutomovil" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdExtra" ColumnName="IdExtra" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fabrica">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Fabrica">
+        <MappingFragment StoreEntitySet="Fabrica">
+          <ScalarProperty Name="IdFabrica" ColumnName="IdFabrica" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="IdGerente" ColumnName="IdGerente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Factura">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Factura">
+        <MappingFragment StoreEntitySet="Factura">
+          <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+          <ScalarProperty Name="IdEmpleadoSucursal" ColumnName="IdEmpleadoSucursal" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fotografia">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Fotografia">
+        <MappingFragment StoreEntitySet="Fotografia">
+          <ScalarProperty Name="IdFotografia" ColumnName="IdFotografia" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FotografiaPorAutomovil">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.FotografiaPorAutomovil">
+        <MappingFragment StoreEntitySet="FotografiaPorAutomovil">
+          <ScalarProperty Name="IdFotografiaAutomovil" ColumnName="IdFotografiaAutomovil" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdFotografia" ColumnName="IdFotografia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventario">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Inventario">
+        <MappingFragment StoreEntitySet="Inventario">
+          <ScalarProperty Name="IdInventario" ColumnName="IdInventario" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="CantidadDisponible" ColumnName="CantidadDisponible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marca">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Marca">
+        <MappingFragment StoreEntitySet="Marca">
+          <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modelo">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Modelo">
+        <MappingFragment StoreEntitySet="Modelo">
+          <ScalarProperty Name="IdModelo" ColumnName="IdModelo" />
+          <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+          <ScalarProperty Name="Año" ColumnName="Año" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pago">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Pago">
+        <MappingFragment StoreEntitySet="Pago">
+          <ScalarProperty Name="IdPago" ColumnName="IdPago" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pais">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Pais">
+        <MappingFragment StoreEntitySet="Pais">
+          <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+          <ScalarProperty Name="Iso" ColumnName="Iso" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Iso3" ColumnName="Iso3" />
+          <ScalarProperty Name="NumCode" ColumnName="NumCode" />
+          <ScalarProperty Name="PhoneCode" ColumnName="PhoneCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pedido">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Pedido">
+        <MappingFragment StoreEntitySet="Pedido">
+          <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+          <ScalarProperty Name="IdFabrica" ColumnName="IdFabrica" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Provincia">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Provincia">
+        <MappingFragment StoreEntitySet="Provincia">
+          <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+          <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sucursal">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Sucursal">
+        <MappingFragment StoreEntitySet="Sucursal">
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="IdGerente" ColumnName="IdGerente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="HoraApertura" ColumnName="HoraApertura" />
+          <ScalarProperty Name="HoraCierre" ColumnName="HoraCierre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoAutomovil">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.TipoAutomovil">
+        <MappingFragment StoreEntitySet="TipoAutomovil">
+          <ScalarProperty Name="IdTipoAutomovil" ColumnName="IdTipoAutomovil" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoCombustible">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.TipoCombustible">
+        <MappingFragment StoreEntitySet="TipoCombustible">
+          <ScalarProperty Name="IdTipoCombustible" ColumnName="IdTipoCombustible" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoEmpleadoFabrica">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.TipoEmpleadoFabrica">
+        <MappingFragment StoreEntitySet="TipoEmpleadoFabrica">
+          <ScalarProperty Name="IdTipoEmpleadoFabrica" ColumnName="IdTipoEmpleadoFabrica" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoEmpleadoSucursal">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.TipoEmpleadoSucursal">
+        <MappingFragment StoreEntitySet="TipoEmpleadoSucursal">
+          <ScalarProperty Name="IdTipoEmpleadoSucursal" ColumnName="IdTipoEmpleadoSucursal" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoPago">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.TipoPago">
+        <MappingFragment StoreEntitySet="TipoPago">
+          <ScalarProperty Name="IdTipoPago" ColumnName="IdTipoPago" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta">
+      <EntityTypeMapping TypeName="VentaAutomovilesModel.Venta">
+        <MappingFragment StoreEntitySet="Venta">
+          <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdTipoPago" ColumnName="IdTipoPago" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="VentaAutomovilesModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_AutomovilDelete" FunctionName="VentaAutomovilesModel.Store.sp_AutomovilDelete" />
+    <FunctionImportMapping FunctionImportName="sp_AutomovilInsert" FunctionName="VentaAutomovilesModel.Store.sp_AutomovilInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_AutomovilInsert_Result">
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdTipoAutomovil" ColumnName="IdTipoAutomovil" />
+          <ScalarProperty Name="IdModelo" ColumnName="IdModelo" />
+          <ScalarProperty Name="IdTipoCombustible" ColumnName="IdTipoCombustible" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_AutomovilSelect" FunctionName="VentaAutomovilesModel.Store.sp_AutomovilSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_AutomovilSelect_Result">
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdTipoAutomovil" ColumnName="IdTipoAutomovil" />
+          <ScalarProperty Name="IdModelo" ColumnName="IdModelo" />
+          <ScalarProperty Name="IdTipoCombustible" ColumnName="IdTipoCombustible" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_AutomovilUpdate" FunctionName="VentaAutomovilesModel.Store.sp_AutomovilUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_AutomovilUpdate_Result">
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdTipoAutomovil" ColumnName="IdTipoAutomovil" />
+          <ScalarProperty Name="IdModelo" ColumnName="IdModelo" />
+          <ScalarProperty Name="IdTipoCombustible" ColumnName="IdTipoCombustible" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ClienteDelete" FunctionName="VentaAutomovilesModel.Store.sp_ClienteDelete" />
+    <FunctionImportMapping FunctionImportName="sp_ClienteInsert" FunctionName="VentaAutomovilesModel.Store.sp_ClienteInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_ClienteInsert_Result">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ClienteSelect" FunctionName="VentaAutomovilesModel.Store.sp_ClienteSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_ClienteSelect_Result">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ClienteUpdate" FunctionName="VentaAutomovilesModel.Store.sp_ClienteUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_ClienteUpdate_Result">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_consultar_productos" FunctionName="VentaAutomovilesModel.Store.sp_consultar_productos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_consultar_productos_Result">
+          <ScalarProperty Name="IdInventario" ColumnName="IdInventario" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="CantidadDisponible" ColumnName="CantidadDisponible" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_consultar_ventas" FunctionName="VentaAutomovilesModel.Store.sp_consultar_ventas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_consultar_ventas_Result">
+          <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdTipoAutomovil" ColumnName="IdTipoAutomovil" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_consultar_ventasPorTipoPago" FunctionName="VentaAutomovilesModel.Store.sp_consultar_ventasPorTipoPago">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_consultar_ventasPorTipoPago_Result">
+          <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdTipoAutomovil" ColumnName="IdTipoAutomovil" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="IdTipoPago" ColumnName="IdTipoPago" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ConsultarProducto" FunctionName="VentaAutomovilesModel.Store.sp_ConsultarProducto">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_ConsultarProducto_Result">
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Nombre1" ColumnName="Nombre1" />
+          <ScalarProperty Name="IdAuto" ColumnName="IdAuto" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="TipoAuto" ColumnName="TipoAuto" />
+          <ScalarProperty Name="Combustible" ColumnName="Combustible" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="VentaAutomovilesModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="VentaAutomovilesModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_EmpleadoDelete" FunctionName="VentaAutomovilesModel.Store.sp_EmpleadoDelete" />
+    <FunctionImportMapping FunctionImportName="sp_EmpleadoInsert" FunctionName="VentaAutomovilesModel.Store.sp_EmpleadoInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_EmpleadoInsert_Result">
+          <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+          <ScalarProperty Name="IdTipoEmpleadoSucursal" ColumnName="IdTipoEmpleadoSucursal" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_EmpleadoSelect" FunctionName="VentaAutomovilesModel.Store.sp_EmpleadoSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_EmpleadoSelect_Result">
+          <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+          <ScalarProperty Name="IdTipoEmpleadoSucursal" ColumnName="IdTipoEmpleadoSucursal" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_EmpleadoUpdate" FunctionName="VentaAutomovilesModel.Store.sp_EmpleadoUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_EmpleadoUpdate_Result">
+          <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+          <ScalarProperty Name="IdTipoEmpleadoSucursal" ColumnName="IdTipoEmpleadoSucursal" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ExtraDelete" FunctionName="VentaAutomovilesModel.Store.sp_ExtraDelete" />
+    <FunctionImportMapping FunctionImportName="sp_ExtraInsert" FunctionName="VentaAutomovilesModel.Store.sp_ExtraInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_ExtraInsert_Result">
+          <ScalarProperty Name="IdExtra" ColumnName="IdExtra" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ExtraSelect" FunctionName="VentaAutomovilesModel.Store.sp_ExtraSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_ExtraSelect_Result">
+          <ScalarProperty Name="IdExtra" ColumnName="IdExtra" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ExtraUpdate" FunctionName="VentaAutomovilesModel.Store.sp_ExtraUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_ExtraUpdate_Result">
+          <ScalarProperty Name="IdExtra" ColumnName="IdExtra" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_FabricaDelete" FunctionName="VentaAutomovilesModel.Store.sp_FabricaDelete" />
+    <FunctionImportMapping FunctionImportName="sp_FabricaInsert" FunctionName="VentaAutomovilesModel.Store.sp_FabricaInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_FabricaInsert_Result">
+          <ScalarProperty Name="IdFabrica" ColumnName="IdFabrica" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="IdGerente" ColumnName="IdGerente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_FabricaSelect" FunctionName="VentaAutomovilesModel.Store.sp_FabricaSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_FabricaSelect_Result">
+          <ScalarProperty Name="IdFabrica" ColumnName="IdFabrica" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="IdGerente" ColumnName="IdGerente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_FabricaUpdate" FunctionName="VentaAutomovilesModel.Store.sp_FabricaUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_FabricaUpdate_Result">
+          <ScalarProperty Name="IdFabrica" ColumnName="IdFabrica" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="IdGerente" ColumnName="IdGerente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_FacturaDelete" FunctionName="VentaAutomovilesModel.Store.sp_FacturaDelete" />
+    <FunctionImportMapping FunctionImportName="sp_FacturaInsert" FunctionName="VentaAutomovilesModel.Store.sp_FacturaInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_FacturaInsert_Result">
+          <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+          <ScalarProperty Name="IdEmpleadoSucursal" ColumnName="IdEmpleadoSucursal" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_FacturaSelect" FunctionName="VentaAutomovilesModel.Store.sp_FacturaSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_FacturaSelect_Result">
+          <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+          <ScalarProperty Name="IdEmpleadoSucursal" ColumnName="IdEmpleadoSucursal" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_FacturaUpdate" FunctionName="VentaAutomovilesModel.Store.sp_FacturaUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_FacturaUpdate_Result">
+          <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+          <ScalarProperty Name="IdEmpleadoSucursal" ColumnName="IdEmpleadoSucursal" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="VentaAutomovilesModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="VentaAutomovilesModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_login" FunctionName="VentaAutomovilesModel.Store.sp_login">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_login_Result">
+          <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
+          <ScalarProperty Name="UserDecription" ColumnName="UserDecription" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="VentaAutomovilesModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_SucursalDelete" FunctionName="VentaAutomovilesModel.Store.sp_SucursalDelete" />
+    <FunctionImportMapping FunctionImportName="sp_SucursalInsert" FunctionName="VentaAutomovilesModel.Store.sp_SucursalInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_SucursalInsert_Result">
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="IdGerente" ColumnName="IdGerente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="HoraApertura" ColumnName="HoraApertura" />
+          <ScalarProperty Name="HoraCierre" ColumnName="HoraCierre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SucursalSelect" FunctionName="VentaAutomovilesModel.Store.sp_SucursalSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_SucursalSelect_Result">
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="IdGerente" ColumnName="IdGerente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="HoraApertura" ColumnName="HoraApertura" />
+          <ScalarProperty Name="HoraCierre" ColumnName="HoraCierre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SucursalUpdate" FunctionName="VentaAutomovilesModel.Store.sp_SucursalUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_SucursalUpdate_Result">
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="IdGerente" ColumnName="IdGerente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="HoraApertura" ColumnName="HoraApertura" />
+          <ScalarProperty Name="HoraCierre" ColumnName="HoraCierre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="VentaAutomovilesModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_VentaDelete" FunctionName="VentaAutomovilesModel.Store.sp_VentaDelete" />
+    <FunctionImportMapping FunctionImportName="sp_VentaInsert" FunctionName="VentaAutomovilesModel.Store.sp_VentaInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_VentaInsert_Result">
+          <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdTipoPago" ColumnName="IdTipoPago" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_VentaSelect" FunctionName="VentaAutomovilesModel.Store.sp_VentaSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_VentaSelect_Result">
+          <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdTipoPago" ColumnName="IdTipoPago" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_VentaUpdate" FunctionName="VentaAutomovilesModel.Store.sp_VentaUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_VentaUpdate_Result">
+          <ScalarProperty Name="IdVenta" ColumnName="IdVenta" />
+          <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+          <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdTipoPago" ColumnName="IdTipoPago" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
