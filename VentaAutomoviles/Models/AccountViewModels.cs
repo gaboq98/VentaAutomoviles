@@ -104,10 +104,12 @@ namespace VentaAutomoviles.Models
         [Display(Name = "Nombre")]
         public string Nombre { get; set; }
 
+        [DataType(DataType.PhoneNumber)]
         [Required]
         [Display(Name = "Cedula")]
         public string Cedula { get; set; }
 
+        [DataType(DataType.PhoneNumber)]
         [Required]
         [Display(Name = "Telefono")]
         public string Telefono { get; set; }

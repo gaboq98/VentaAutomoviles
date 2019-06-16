@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
@@ -153,12 +154,14 @@ namespace VentaAutomoviles.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            /*
             List<object> list = new List<object>
             {
                 db.Pais.Find(52) // Para que sea solo CR
             };
             IEnumerable<object> en = list;
-            ViewBag.IdPais = new SelectList(en, "IdPais", "Nombre");
+            */
+            ViewBag.IdPais = new SelectList(db.Pais, "IdPais", "Nombre");
             ViewBag.IdProvincia = new SelectList(db.Provincia, "IdProvincia", "Nombre");
             ViewBag.IdCanton = new SelectList(db.Canton, "IdCanton", "Nombre");
             return View();
@@ -173,8 +176,11 @@ namespace VentaAutomoviles.Controllers
         {
             if (ModelState.IsValid)
             {
-                //**//
-                SqlConnection con = new SqlConnection("metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=bdtec.database.windows.net;initial catalog=VentaAutomoviles;persist security info=True;user id=SuperUser;password=Admin420;MultipleActiveResultSets=True;App=EntityFramework&quot;");
+                /**
+                ConnectionStringSettings mySetting = ConfigurationManager.ConnectionStrings["VentaAutomovilesEntities"];
+                if (mySetting == null || string.IsNullOrEmpty(mySetting.ConnectionString))
+                    throw new Exception("Fatal error: missing connecting string in web.config file");
+                SqlConnection con = new SqlConnection(mySetting.ConnectionString);
                 SqlCommand cmd = new SqlCommand("sp_ClienteInsert", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -187,7 +193,6 @@ namespace VentaAutomoviles.Controllers
                 cmd.Parameters.Add("@Telefono", SqlDbType.VarChar).Value = model.Telefono;
                 cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = model.Email;
 
-
                 SqlParameter returnParameter = cmd.Parameters.Add("RetVal", SqlDbType.Int);
                 returnParameter.Direction = ParameterDirection.ReturnValue;
                 cmd.ExecuteNonQuery();
@@ -195,8 +200,11 @@ namespace VentaAutomoviles.Controllers
                 int id = (int)returnParameter.Value;
 
                 con.Close();
-                //**//
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, IdCliente  = id };
+                **/
+
+                var spResult = db.sp_ClienteInsert(model.Pais, model.Provincia, model.Canton, model.Señas, model.Nombre, model.Cedula, model.Telefono, model.Email);
+                sp_ClienteInsert_Result cliente = spResult.ElementAt(0);
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, IdCliente  = cliente.IdCliente };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -206,7 +214,14 @@ namespace VentaAutomoviles.Controllers
                 }
                 AddErrors(result);
             }
-
+            List<object> list = new List<object>
+            {
+                db.Pais.Find(52) // Para que sea solo CR
+            };
+            IEnumerable<object> en = list;
+            ViewBag.IdPais = new SelectList(en, "IdPais", "Nombre");
+            ViewBag.IdProvincia = new SelectList(db.Provincia, "IdProvincia", "Nombre");
+            ViewBag.IdCanton = new SelectList(db.Canton, "IdCanton", "Nombre");
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
             return View(model);
         }

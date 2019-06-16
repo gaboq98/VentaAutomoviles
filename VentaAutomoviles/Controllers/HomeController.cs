@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using VentaAutomoviles.Models;
 
 namespace VentaAutomoviles.Controllers
 {
@@ -10,6 +13,9 @@ namespace VentaAutomoviles.Controllers
     {
         public ActionResult Index()
         {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            ViewBag.ID = currentUser.IdCliente;
             return View();
         }
 

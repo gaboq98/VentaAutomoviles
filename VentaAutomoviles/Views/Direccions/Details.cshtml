@@ -1,0 +1,50 @@
+﻿@model VentaAutomoviles.Models.Direccion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Direccion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Señas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Señas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Canton.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Canton.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pais.Iso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pais.Iso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Provincia.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Provincia.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdDireccion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
