@@ -1647,7 +1647,6 @@
           <Property Name="IdModelo" Type="Int32" Nullable="false" />
           <Property Name="IdTipoCombustible" Type="Int32" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CaracteristicasPorAutomovil" Relationship="Self.fk_caracteristicasAutomovil" FromRole="Automovil" ToRole="CaracteristicasPorAutomovil" />
           <NavigationProperty Name="Consignacion" Relationship="Self.fk_consignacionAutomovil" FromRole="Automovil" ToRole="Consignacion" />
           <NavigationProperty Name="Credito" Relationship="Self.fk_creditoAutomovil" FromRole="Automovil" ToRole="Credito" />

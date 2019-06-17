@@ -1,13 +1,12 @@
-﻿@model VentaAutomoviles.Models.Automovil
+﻿@model VentaAutomoviles.Models.AutomovilesViewModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>Automovil</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -16,14 +15,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Precio)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
         </dd>
 
         <dt>
@@ -52,7 +43,7 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdAutomovil }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div>
+    @Html.ActionLink("Volver", "Index", "Automoviles", new { @class = "btn btn-outline-primary mr-1" })
+</div>

@@ -189,6 +189,7 @@
     <Compile Include="Models\Automovil.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AutomovilesViewModel.cs" />
     <Compile Include="Models\Canton.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -533,10 +534,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\IndexFacturador.cshtml" />
     <Content Include="Views\Facturas\Create.cshtml" />
-    <Content Include="Views\Automoviles\Create.cshtml" />
-    <Content Include="Views\Automoviles\Delete.cshtml" />
     <Content Include="Views\Automoviles\Details.cshtml" />
-    <Content Include="Views\Automoviles\Edit.cshtml" />
     <Content Include="Views\Automoviles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

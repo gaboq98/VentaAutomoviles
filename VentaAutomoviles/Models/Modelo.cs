@@ -11,7 +11,8 @@ namespace VentaAutomoviles.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Modelo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,6 +24,9 @@ namespace VentaAutomoviles.Models
         public int IdModelo { get; set; }
         public int IdMarca { get; set; }
         public System.DateTime Año { get; set; }
+
+        [Required]
+        [Display(Name = "Modelo")]
         public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

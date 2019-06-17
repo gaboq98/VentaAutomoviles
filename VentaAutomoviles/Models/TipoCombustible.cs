@@ -11,7 +11,8 @@ namespace VentaAutomoviles.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TipoCombustible
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,9 @@ namespace VentaAutomoviles.Models
         }
     
         public int IdTipoCombustible { get; set; }
+
+        [Required]
+        [Display(Name = "Tipo combustible")]
         public string Descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

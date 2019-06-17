@@ -18,7 +18,6 @@
           <ScalarProperty Name="IdModelo" ColumnName="IdModelo" />
           <ScalarProperty Name="IdTipoCombustible" ColumnName="IdTipoCombustible" />
           <ScalarProperty Name="Precio" ColumnName="Precio" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

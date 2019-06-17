@@ -11,7 +11,8 @@ namespace VentaAutomoviles.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Automovil
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,13 +30,19 @@ namespace VentaAutomoviles.Models
             this.Pedido = new HashSet<Pedido>();
             this.Venta = new HashSet<Venta>();
         }
-    
+
+        
         public int IdAutomovil { get; set; }
+
+        [Required]
+        [Display(Name = "Tipo de automovil")]
         public int IdTipoAutomovil { get; set; }
         public int IdModelo { get; set; }
         public int IdTipoCombustible { get; set; }
+
+        [Required]
+        [Display(Name = "Precio")]
         public decimal Precio { get; set; }
-        public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CaracteristicasPorAutomovil> CaracteristicasPorAutomovil { get; set; }
