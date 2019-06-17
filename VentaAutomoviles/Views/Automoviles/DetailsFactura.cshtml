@@ -1,0 +1,69 @@
+﻿@model VentaAutomoviles.Models.AutomovilesViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+<div class="row">
+    <hr />
+    <div class="column">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Marca.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Marca.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Modelo.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Modelo.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoAutomovil.Descripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TipoAutomovil.Descripcion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoCombustible.Descripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TipoCombustible.Descripcion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Precio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Precio)
+            </dd>
+
+        </dl>
+    </div>
+    <div class="column">
+        <dl class="dl-horizontal">
+            @foreach (var foto in Model.Fotos)
+            {
+                <dd>
+                    <img src="@Url.Action("Show", "Image", new { id = foto } ) " class="square rounded" />
+                </dd>
+            }
+        </dl>
+    </div>
+</div>
+
+
+<div>
+    @Html.ActionLink("Volver", "Index", "Automoviles", new { @class = "btn btn-outline-primary mr-1" })
+</div>

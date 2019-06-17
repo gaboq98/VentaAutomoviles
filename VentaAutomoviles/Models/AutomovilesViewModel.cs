@@ -8,6 +8,8 @@ namespace VentaAutomoviles.Models
 {
     public class AutomovilesViewModel
     {
+        private VentaAutomovilesEntities db = new VentaAutomovilesEntities();
+
         public AutomovilesViewModel(Automovil automovil)
         {
             this.IdAutomovil = automovil.IdAutomovil;
@@ -18,6 +20,14 @@ namespace VentaAutomoviles.Models
             this.Precio = automovil.Precio;
             this.IdTipoCombustible = automovil.IdTipoCombustible;
             this.TipoCombustible = automovil.TipoCombustible;
+            this.Marca = db.Marca.Find(automovil.Modelo.IdMarca);
+            var paquete =
+                    from F in db.Fotografia
+                    from FXA in db.FotografiaPorAutomovil
+                    where FXA.IdFotografia == F.IdFotografia
+                    where FXA.IdAutomovil == automovil.IdAutomovil
+                    select F.IdFotografia;
+            this.Fotos = paquete.ToList();
         }
 
         [Key]
@@ -40,5 +50,7 @@ namespace VentaAutomoviles.Models
         public virtual TipoAutomovil TipoAutomovil { get; set; }
 
         public virtual TipoCombustible TipoCombustible { get; set; }
+        public Marca Marca { get; set; }
+        public List<int> Fotos { get; set; }
     }
 }

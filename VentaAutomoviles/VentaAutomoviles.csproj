@@ -178,6 +178,7 @@
     <Compile Include="Controllers\AutomovilesController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -534,11 +535,12 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\IndexFacturador.cshtml" />
     <Content Include="Views\Facturas\Create.cshtml" />
-    <Content Include="Views\Automoviles\Details.cshtml" />
+    <Content Include="Views\Automoviles\DetailsFactura.cshtml" />
     <Content Include="Views\Automoviles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

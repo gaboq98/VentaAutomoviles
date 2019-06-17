@@ -22,7 +22,7 @@ namespace VentaAutomoviles.Controllers
         }
 
         // GET: Automoviles/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult DetailsFactura(int? id)
         {
             if (id == null)
             {
