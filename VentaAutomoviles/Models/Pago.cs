@@ -26,11 +26,13 @@ namespace VentaAutomoviles.Models
         public int IdAutomovil { get; set; }
         public decimal Monto { get; set; }
         public System.DateTime Fecha { get; set; }
+        public int IdTipoPago { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Abono> Abono { get; set; }
         public virtual Automovil Automovil { get; set; }
         public virtual Cliente Cliente { get; set; }
         public virtual Sucursal Sucursal { get; set; }
+        public virtual TipoPago TipoPago { get; set; }
     }
 }

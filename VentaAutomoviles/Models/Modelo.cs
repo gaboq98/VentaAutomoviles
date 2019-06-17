@@ -23,6 +23,7 @@ namespace VentaAutomoviles.Models
         public int IdModelo { get; set; }
         public int IdMarca { get; set; }
         public System.DateTime Año { get; set; }
+        public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Automovil> Automovil { get; set; }

@@ -15,7 +15,7 @@ namespace VentaAutomoviles.Controllers
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = manager.FindById(User.Identity.GetUserId());
-            ViewBag.ID = currentUser.IdCliente;
+            ViewBag.ID = currentUser.PhoneNumber;
             return View();
         }
 
@@ -32,5 +32,12 @@ namespace VentaAutomoviles.Controllers
 
             return View();
         }
+
+        public ActionResult IndexFacturador()
+        {
+            
+            return View();
+        }
+
     }
 }

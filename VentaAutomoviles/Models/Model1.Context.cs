@@ -812,5 +812,173 @@ namespace VentaAutomoviles.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_VentaUpdate_Result>("sp_VentaUpdate", idVentaParameter, idSucursalParameter, idAutomovilParameter, idClienteParameter, idTipoPagoParameter, montoParameter, fechaParameter);
         }
+    
+        public virtual int sp_Facturar(Nullable<int> idEmpleado, Nullable<int> idSucursal, Nullable<int> idCliente, Nullable<int> idAutomovil, Nullable<int> idTipoPago)
+        {
+            var idEmpleadoParameter = idEmpleado.HasValue ?
+                new ObjectParameter("idEmpleado", idEmpleado) :
+                new ObjectParameter("idEmpleado", typeof(int));
+    
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("idSucursal", idSucursal) :
+                new ObjectParameter("idSucursal", typeof(int));
+    
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("idAutomovil", idAutomovil) :
+                new ObjectParameter("idAutomovil", typeof(int));
+    
+            var idTipoPagoParameter = idTipoPago.HasValue ?
+                new ObjectParameter("idTipoPago", idTipoPago) :
+                new ObjectParameter("idTipoPago", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Facturar", idEmpleadoParameter, idSucursalParameter, idClienteParameter, idAutomovilParameter, idTipoPagoParameter);
+        }
+    
+        public virtual int sp_CaracteristicasPorAutomovilDelete(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CaracteristicasPorAutomovilDelete", idParameter);
+        }
+    
+        public virtual ObjectResult<sp_CaracteristicasPorAutomovilInsert_Result> sp_CaracteristicasPorAutomovilInsert(Nullable<int> idAutomovil, string color, Nullable<int> puertas, Nullable<int> pasajeros)
+        {
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("IdAutomovil", idAutomovil) :
+                new ObjectParameter("IdAutomovil", typeof(int));
+    
+            var colorParameter = color != null ?
+                new ObjectParameter("Color", color) :
+                new ObjectParameter("Color", typeof(string));
+    
+            var puertasParameter = puertas.HasValue ?
+                new ObjectParameter("Puertas", puertas) :
+                new ObjectParameter("Puertas", typeof(int));
+    
+            var pasajerosParameter = pasajeros.HasValue ?
+                new ObjectParameter("Pasajeros", pasajeros) :
+                new ObjectParameter("Pasajeros", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CaracteristicasPorAutomovilInsert_Result>("sp_CaracteristicasPorAutomovilInsert", idAutomovilParameter, colorParameter, puertasParameter, pasajerosParameter);
+        }
+    
+        public virtual ObjectResult<sp_CaracteristicasPorAutomovilSelect_Result> sp_CaracteristicasPorAutomovilSelect(Nullable<int> idCaracteristicaAutomovil)
+        {
+            var idCaracteristicaAutomovilParameter = idCaracteristicaAutomovil.HasValue ?
+                new ObjectParameter("IdCaracteristicaAutomovil", idCaracteristicaAutomovil) :
+                new ObjectParameter("IdCaracteristicaAutomovil", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CaracteristicasPorAutomovilSelect_Result>("sp_CaracteristicasPorAutomovilSelect", idCaracteristicaAutomovilParameter);
+        }
+    
+        public virtual ObjectResult<sp_CaracteristicasPorAutomovilUpdate_Result> sp_CaracteristicasPorAutomovilUpdate(Nullable<int> idAutomovil, string color, Nullable<int> puertas, Nullable<int> pasajeros)
+        {
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("IdAutomovil", idAutomovil) :
+                new ObjectParameter("IdAutomovil", typeof(int));
+    
+            var colorParameter = color != null ?
+                new ObjectParameter("Color", color) :
+                new ObjectParameter("Color", typeof(string));
+    
+            var puertasParameter = puertas.HasValue ?
+                new ObjectParameter("Puertas", puertas) :
+                new ObjectParameter("Puertas", typeof(int));
+    
+            var pasajerosParameter = pasajeros.HasValue ?
+                new ObjectParameter("Pasajeros", pasajeros) :
+                new ObjectParameter("Pasajeros", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CaracteristicasPorAutomovilUpdate_Result>("sp_CaracteristicasPorAutomovilUpdate", idAutomovilParameter, colorParameter, puertasParameter, pasajerosParameter);
+        }
+    
+        public virtual int sp_ConsignacionDelete(Nullable<int> idConsignacion)
+        {
+            var idConsignacionParameter = idConsignacion.HasValue ?
+                new ObjectParameter("IdConsignacion", idConsignacion) :
+                new ObjectParameter("IdConsignacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ConsignacionDelete", idConsignacionParameter);
+        }
+    
+        public virtual ObjectResult<sp_ConsignacionInsert_Result> sp_ConsignacionInsert(Nullable<int> idSucursal, Nullable<int> idAutomovil, Nullable<double> comision)
+        {
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("IdSucursal", idSucursal) :
+                new ObjectParameter("IdSucursal", typeof(int));
+    
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("IdAutomovil", idAutomovil) :
+                new ObjectParameter("IdAutomovil", typeof(int));
+    
+            var comisionParameter = comision.HasValue ?
+                new ObjectParameter("Comision", comision) :
+                new ObjectParameter("Comision", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ConsignacionInsert_Result>("sp_ConsignacionInsert", idSucursalParameter, idAutomovilParameter, comisionParameter);
+        }
+    
+        public virtual ObjectResult<sp_ConsignacionSelect_Result> sp_ConsignacionSelect(Nullable<int> idConsignacion)
+        {
+            var idConsignacionParameter = idConsignacion.HasValue ?
+                new ObjectParameter("IdConsignacion", idConsignacion) :
+                new ObjectParameter("IdConsignacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ConsignacionSelect_Result>("sp_ConsignacionSelect", idConsignacionParameter);
+        }
+    
+        public virtual ObjectResult<sp_ConsignacionUpdate_Result> sp_ConsignacionUpdate(Nullable<int> idConsignacion, Nullable<int> idSucursal, Nullable<int> idAutomovil, Nullable<double> comision)
+        {
+            var idConsignacionParameter = idConsignacion.HasValue ?
+                new ObjectParameter("IdConsignacion", idConsignacion) :
+                new ObjectParameter("IdConsignacion", typeof(int));
+    
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("IdSucursal", idSucursal) :
+                new ObjectParameter("IdSucursal", typeof(int));
+    
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("IdAutomovil", idAutomovil) :
+                new ObjectParameter("IdAutomovil", typeof(int));
+    
+            var comisionParameter = comision.HasValue ?
+                new ObjectParameter("Comision", comision) :
+                new ObjectParameter("Comision", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ConsignacionUpdate_Result>("sp_ConsignacionUpdate", idConsignacionParameter, idSucursalParameter, idAutomovilParameter, comisionParameter);
+        }
+    
+        public virtual ObjectResult<sp_FacturarCustom_Result> sp_FacturarCustom(Nullable<int> idEmpleado, Nullable<int> idSucursal, Nullable<int> idCliente, Nullable<int> idAutomovil, Nullable<int> idTipoPago)
+        {
+            var idEmpleadoParameter = idEmpleado.HasValue ?
+                new ObjectParameter("idEmpleado", idEmpleado) :
+                new ObjectParameter("idEmpleado", typeof(int));
+    
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("idSucursal", idSucursal) :
+                new ObjectParameter("idSucursal", typeof(int));
+    
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("idAutomovil", idAutomovil) :
+                new ObjectParameter("idAutomovil", typeof(int));
+    
+            var idTipoPagoParameter = idTipoPago.HasValue ?
+                new ObjectParameter("idTipoPago", idTipoPago) :
+                new ObjectParameter("idTipoPago", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FacturarCustom_Result>("sp_FacturarCustom", idEmpleadoParameter, idSucursalParameter, idClienteParameter, idAutomovilParameter, idTipoPagoParameter);
+        }
+
+        public System.Data.Entity.DbSet<VentaAutomoviles.Models.FacturaViewModel> FacturaViewModels { get; set; }
     }
 }

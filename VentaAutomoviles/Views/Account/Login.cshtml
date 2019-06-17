@@ -14,30 +14,6 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Role, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                @Html.RadioButtonFor(m => m.Role, "Administrador", new { @class = "form-check-input" })
-                                Administrador
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                @Html.RadioButtonFor(m => m.Role, "Facturador", new { @class = "form-check-input" })
-                                Facturador
-                            </label>
-                        </div>
-                        <div class="form-check disabled">
-                            <label class="form-check-label">
-                                @Html.RadioButtonFor(m => m.Role, "Consultas", new { @class = "form-check-input" })
-                                Consultas
-                            </label>
-                        </div>
-                        @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
                     @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
@@ -60,17 +36,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Iniciar sesión" class="btn btn-default" />
+                    <div class="col-md-offset-2 col-md-10 p-2">
+                        <input type="submit" value="Iniciar sesión" class="btn btn-primary" />
                     </div>
                 </div>
-                <p>
-                    @Html.ActionLink("Registrarse como usuario nuevo", "Register")
+                <p class="p-2">
+                    @Html.ActionLink("Registrarse como usuario nuevo", "Register", "Account", new { @class = "btn btn-outline-secondary" })
                 </p>
-                @* Habilite esta opción una vez tenga la confirmación de la cuenta habilitada para la funcionalidad de restablecimiento de contraseña
-            <p>
-                @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")
-            </p>*@
             }
         </section>
     </div>

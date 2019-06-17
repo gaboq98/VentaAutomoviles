@@ -18,6 +18,7 @@ namespace VentaAutomoviles.Models
         public TipoPago()
         {
             this.Venta = new HashSet<Venta>();
+            this.Pago = new HashSet<Pago>();
         }
     
         public int IdTipoPago { get; set; }
@@ -25,5 +26,7 @@ namespace VentaAutomoviles.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Venta> Venta { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pago> Pago { get; set; }
     }
 }

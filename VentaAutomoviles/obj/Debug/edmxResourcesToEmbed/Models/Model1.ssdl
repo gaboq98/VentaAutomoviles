@@ -208,6 +208,7 @@
     <Property Name="IdModelo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdMarca" Type="int" Nullable="false" />
     <Property Name="Año" Type="date" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Pago">
     <Key>
@@ -219,6 +220,7 @@
     <Property Name="IdAutomovil" Type="int" Nullable="false" />
     <Property Name="Monto" Type="money" Nullable="false" />
     <Property Name="Fecha" Type="date" Nullable="false" />
+    <Property Name="IdTipoPago" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Pais">
     <Key>
@@ -965,6 +967,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_tipoPago">
+    <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
+    <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPago">
+        <PropertyRef Name="IdTipoPago" />
+      </Principal>
+      <Dependent Role="Pago">
+        <PropertyRef Name="IdTipoPago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_venta_tipoPago">
     <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
     <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
@@ -1039,6 +1053,24 @@
     <Parameter Name="IdTipoCombustible" Type="int" Mode="In" />
     <Parameter Name="Precio" Type="money" Mode="In" />
   </Function>
+  <Function Name="sp_CaracteristicasPorAutomovilDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_CaracteristicasPorAutomovilInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+    <Parameter Name="Color" Type="varchar" Mode="In" />
+    <Parameter Name="Puertas" Type="int" Mode="In" />
+    <Parameter Name="Pasajeros" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_CaracteristicasPorAutomovilSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCaracteristicaAutomovil" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_CaracteristicasPorAutomovilUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+    <Parameter Name="Color" Type="varchar" Mode="In" />
+    <Parameter Name="Puertas" Type="int" Mode="In" />
+    <Parameter Name="Pasajeros" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_ClienteDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdCliente" Type="int" Mode="In" />
   </Function>
@@ -1062,6 +1094,23 @@
     <Parameter Name="Cedula" Type="varchar" Mode="In" />
     <Parameter Name="Telefono" Type="varchar" Mode="In" />
     <Parameter Name="Email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ConsignacionDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdConsignacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ConsignacionInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdSucursal" Type="int" Mode="In" />
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+    <Parameter Name="Comision" Type="float" Mode="In" />
+  </Function>
+  <Function Name="sp_ConsignacionSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdConsignacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_ConsignacionUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdConsignacion" Type="int" Mode="In" />
+    <Parameter Name="IdSucursal" Type="int" Mode="In" />
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+    <Parameter Name="Comision" Type="float" Mode="In" />
   </Function>
   <Function Name="sp_consultar_productos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_consultar_ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1158,6 +1207,13 @@
     <Parameter Name="Monto" Type="money" Mode="In" />
     <Parameter Name="Descuento" Type="float" Mode="In" />
     <Parameter Name="Fecha" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_Facturar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idEmpleado" Type="int" Mode="In" />
+    <Parameter Name="idSucursal" Type="int" Mode="In" />
+    <Parameter Name="idCliente" Type="int" Mode="In" />
+    <Parameter Name="idAutomovil" Type="int" Mode="In" />
+    <Parameter Name="idTipoPago" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_FacturaSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdFactura" Type="int" Mode="In" />
@@ -1462,6 +1518,10 @@
     <AssociationSet Name="fk_tipoEmpleadoSucursal" Association="Self.fk_tipoEmpleadoSucursal">
       <End Role="TipoEmpleadoSucursal" EntitySet="TipoEmpleadoSucursal" />
       <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tipoPago" Association="Self.fk_tipoPago">
+      <End Role="TipoPago" EntitySet="TipoPago" />
+      <End Role="Pago" EntitySet="Pago" />
     </AssociationSet>
     <AssociationSet Name="fk_venta_tipoPago" Association="Self.fk_venta_tipoPago">
       <End Role="TipoPago" EntitySet="TipoPago" />

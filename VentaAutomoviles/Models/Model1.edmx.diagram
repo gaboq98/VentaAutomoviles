@@ -91,6 +91,7 @@
         <AssociationConnector Association="VentaAutomovilesModel.fk_pedidoSucursal" ManuallyRouted="false" />
         <AssociationConnector Association="VentaAutomovilesModel.fk_ventaSucursal" ManuallyRouted="false" />
         <AssociationConnector Association="VentaAutomovilesModel.fk_venta_tipoPago" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutomovilesModel.fk_tipoPago" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
