@@ -22,7 +22,6 @@
           <Property Name="IdModelo" Type="int" Nullable="false" />
           <Property Name="IdTipoCombustible" Type="int" Nullable="false" />
           <Property Name="Precio" Type="money" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Canton">
           <Key>
@@ -407,6 +406,18 @@
             </Principal>
             <Dependent Role="Consignacion">
               <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_credito">
+          <End Role="Credito" Type="Self.Credito" Multiplicity="1" />
+          <End Role="Abono" Type="Self.Abono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credito">
+              <PropertyRef Name="IdCredito" />
+            </Principal>
+            <Dependent Role="Abono">
+              <PropertyRef Name="IdCredito" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -902,6 +913,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="Inventario">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_sucursalConsignacion">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="Consignacion" Type="Self.Consignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="Consignacion">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_sucursalCredito">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="Credito" Type="Self.Credito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="Credito">
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_sucursalDireccion">
           <End Role="Direccion" Type="Self.Direccion" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -913,6 +960,18 @@
             </Principal>
             <Dependent Role="Sucursal">
               <PropertyRef Name="IdDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_sucursalPedido">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="IdSucursal" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1356,6 +1415,10 @@
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="Consignacion" EntitySet="Consignacion" />
           </AssociationSet>
+          <AssociationSet Name="fk_credito" Association="Self.fk_credito">
+            <End Role="Credito" EntitySet="Credito" />
+            <End Role="Abono" EntitySet="Abono" />
+          </AssociationSet>
           <AssociationSet Name="fk_creditoAutomovil" Association="Self.fk_creditoAutomovil">
             <End Role="Automovil" EntitySet="Automovil" />
             <End Role="Credito" EntitySet="Credito" />
@@ -1504,9 +1567,25 @@
             <End Role="Pais" EntitySet="Pais" />
             <End Role="Provincia" EntitySet="Provincia" />
           </AssociationSet>
+          <AssociationSet Name="fk_sucursal" Association="Self.fk_sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_sucursalConsignacion" Association="Self.fk_sucursalConsignacion">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Consignacion" EntitySet="Consignacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_sucursalCredito" Association="Self.fk_sucursalCredito">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Credito" EntitySet="Credito" />
+          </AssociationSet>
           <AssociationSet Name="fk_sucursalDireccion" Association="Self.fk_sucursalDireccion">
             <End Role="Direccion" EntitySet="Direccion" />
             <End Role="Sucursal" EntitySet="Sucursal" />
+          </AssociationSet>
+          <AssociationSet Name="fk_sucursalPedido" Association="Self.fk_sucursalPedido">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Pedido" EntitySet="Pedido" />
           </AssociationSet>
           <AssociationSet Name="fk_tipoAutomovil" Association="Self.fk_tipoAutomovil">
             <End Role="TipoAutomovil" EntitySet="TipoAutomovil" />
@@ -3505,7 +3584,6 @@
                 <ScalarProperty Name="IdModelo" ColumnName="IdModelo" />
                 <ScalarProperty Name="IdTipoCombustible" ColumnName="IdTipoCombustible" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

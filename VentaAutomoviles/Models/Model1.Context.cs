@@ -978,7 +978,5 @@ namespace VentaAutomoviles.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FacturarCustom_Result>("sp_FacturarCustom", idEmpleadoParameter, idSucursalParameter, idClienteParameter, idAutomovilParameter, idTipoPagoParameter);
         }
-
-        public System.Data.Entity.DbSet<VentaAutomoviles.Models.FacturaViewModel> FacturaViewModels { get; set; }
     }
 }
