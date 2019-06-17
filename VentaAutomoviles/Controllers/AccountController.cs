@@ -201,7 +201,6 @@ namespace VentaAutomoviles.Controllers
 
                 con.Close();
                 **/
-
                 var spResult = db.sp_ClienteInsert(model.Pais, model.Provincia, model.Canton, model.Señas, model.Nombre, model.Cedula, model.Telefono, model.Email);
                 sp_ClienteInsert_Result cliente = spResult.ElementAt(0);
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, IdCliente  = cliente.IdCliente };
