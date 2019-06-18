@@ -30,7 +30,7 @@ namespace VentaAutomoviles.Models
     
         public int IdSucursal { get; set; }
         public int IdDireccion { get; set; }
-        public int IdGerente { get; set; }
+        public Nullable<int> IdGerente { get; set; }
         public string Nombre { get; set; }
         public System.TimeSpan HoraApertura { get; set; }
         public System.TimeSpan HoraCierre { get; set; }

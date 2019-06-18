@@ -978,5 +978,171 @@ namespace VentaAutomoviles.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_FacturarCustom_Result>("sp_FacturarCustom", idEmpleadoParameter, idSucursalParameter, idClienteParameter, idAutomovilParameter, idTipoPagoParameter);
         }
+    
+        public virtual int AbonarPago(Nullable<int> idSucursal, Nullable<int> idCliente, Nullable<int> idAutomovil, Nullable<int> idTipoPago, Nullable<decimal> monto)
+        {
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("idSucursal", idSucursal) :
+                new ObjectParameter("idSucursal", typeof(int));
+    
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(int));
+    
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("idAutomovil", idAutomovil) :
+                new ObjectParameter("idAutomovil", typeof(int));
+    
+            var idTipoPagoParameter = idTipoPago.HasValue ?
+                new ObjectParameter("idTipoPago", idTipoPago) :
+                new ObjectParameter("idTipoPago", typeof(int));
+    
+            var montoParameter = monto.HasValue ?
+                new ObjectParameter("monto", monto) :
+                new ObjectParameter("monto", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AbonarPago", idSucursalParameter, idClienteParameter, idAutomovilParameter, idTipoPagoParameter, montoParameter);
+        }
+    
+        public virtual int RetencionImpuestos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RetencionImpuestos");
+        }
+    
+        public virtual int sp_InventarioDelete(Nullable<int> idInventario)
+        {
+            var idInventarioParameter = idInventario.HasValue ?
+                new ObjectParameter("IdInventario", idInventario) :
+                new ObjectParameter("IdInventario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InventarioDelete", idInventarioParameter);
+        }
+    
+        public virtual ObjectResult<sp_InventarioInsert_Result> sp_InventarioInsert(Nullable<int> idSucursal, Nullable<int> idAutomovil, Nullable<int> cantidadDisponible)
+        {
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("IdSucursal", idSucursal) :
+                new ObjectParameter("IdSucursal", typeof(int));
+    
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("IdAutomovil", idAutomovil) :
+                new ObjectParameter("IdAutomovil", typeof(int));
+    
+            var cantidadDisponibleParameter = cantidadDisponible.HasValue ?
+                new ObjectParameter("CantidadDisponible", cantidadDisponible) :
+                new ObjectParameter("CantidadDisponible", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_InventarioInsert_Result>("sp_InventarioInsert", idSucursalParameter, idAutomovilParameter, cantidadDisponibleParameter);
+        }
+    
+        public virtual ObjectResult<sp_InventarioSelect_Result> sp_InventarioSelect(Nullable<int> idInventario)
+        {
+            var idInventarioParameter = idInventario.HasValue ?
+                new ObjectParameter("IdInventario", idInventario) :
+                new ObjectParameter("IdInventario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_InventarioSelect_Result>("sp_InventarioSelect", idInventarioParameter);
+        }
+    
+        public virtual ObjectResult<sp_InventarioUpdate_Result> sp_InventarioUpdate(Nullable<int> idInventario, Nullable<int> idSucursal, Nullable<int> idAutomovil, Nullable<int> cantidadDisponible)
+        {
+            var idInventarioParameter = idInventario.HasValue ?
+                new ObjectParameter("IdInventario", idInventario) :
+                new ObjectParameter("IdInventario", typeof(int));
+    
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("IdSucursal", idSucursal) :
+                new ObjectParameter("IdSucursal", typeof(int));
+    
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("IdAutomovil", idAutomovil) :
+                new ObjectParameter("IdAutomovil", typeof(int));
+    
+            var cantidadDisponibleParameter = cantidadDisponible.HasValue ?
+                new ObjectParameter("CantidadDisponible", cantidadDisponible) :
+                new ObjectParameter("CantidadDisponible", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_InventarioUpdate_Result>("sp_InventarioUpdate", idInventarioParameter, idSucursalParameter, idAutomovilParameter, cantidadDisponibleParameter);
+        }
+    
+        public virtual int sp_PedidoDelete(Nullable<int> idPedido)
+        {
+            var idPedidoParameter = idPedido.HasValue ?
+                new ObjectParameter("IdPedido", idPedido) :
+                new ObjectParameter("IdPedido", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_PedidoDelete", idPedidoParameter);
+        }
+    
+        public virtual ObjectResult<sp_PedidoInsert_Result> sp_PedidoInsert(Nullable<int> idFabrica, Nullable<int> idAutomovil, Nullable<int> idSucursal, Nullable<int> idCliente, Nullable<System.DateTime> fecha, Nullable<System.DateTime> fechaEntrega)
+        {
+            var idFabricaParameter = idFabrica.HasValue ?
+                new ObjectParameter("IdFabrica", idFabrica) :
+                new ObjectParameter("IdFabrica", typeof(int));
+    
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("IdAutomovil", idAutomovil) :
+                new ObjectParameter("IdAutomovil", typeof(int));
+    
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("IdSucursal", idSucursal) :
+                new ObjectParameter("IdSucursal", typeof(int));
+    
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("IdCliente", idCliente) :
+                new ObjectParameter("IdCliente", typeof(int));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            var fechaEntregaParameter = fechaEntrega.HasValue ?
+                new ObjectParameter("FechaEntrega", fechaEntrega) :
+                new ObjectParameter("FechaEntrega", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_PedidoInsert_Result>("sp_PedidoInsert", idFabricaParameter, idAutomovilParameter, idSucursalParameter, idClienteParameter, fechaParameter, fechaEntregaParameter);
+        }
+    
+        public virtual ObjectResult<sp_PedidoSelect_Result> sp_PedidoSelect(Nullable<int> idPedido)
+        {
+            var idPedidoParameter = idPedido.HasValue ?
+                new ObjectParameter("IdPedido", idPedido) :
+                new ObjectParameter("IdPedido", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_PedidoSelect_Result>("sp_PedidoSelect", idPedidoParameter);
+        }
+    
+        public virtual ObjectResult<sp_PedidoUpdate_Result> sp_PedidoUpdate(Nullable<int> idPedido, Nullable<int> idFabrica, Nullable<int> idAutomovil, Nullable<int> idSucursal, Nullable<int> idCliente, Nullable<System.DateTime> fecha, Nullable<System.DateTime> fechaEntrega)
+        {
+            var idPedidoParameter = idPedido.HasValue ?
+                new ObjectParameter("IdPedido", idPedido) :
+                new ObjectParameter("IdPedido", typeof(int));
+    
+            var idFabricaParameter = idFabrica.HasValue ?
+                new ObjectParameter("IdFabrica", idFabrica) :
+                new ObjectParameter("IdFabrica", typeof(int));
+    
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("IdAutomovil", idAutomovil) :
+                new ObjectParameter("IdAutomovil", typeof(int));
+    
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("IdSucursal", idSucursal) :
+                new ObjectParameter("IdSucursal", typeof(int));
+    
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("IdCliente", idCliente) :
+                new ObjectParameter("IdCliente", typeof(int));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            var fechaEntregaParameter = fechaEntrega.HasValue ?
+                new ObjectParameter("FechaEntrega", fechaEntrega) :
+                new ObjectParameter("FechaEntrega", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_PedidoUpdate_Result>("sp_PedidoUpdate", idPedidoParameter, idFabricaParameter, idAutomovilParameter, idSucursalParameter, idClienteParameter, fechaParameter, fechaEntregaParameter);
+        }
     }
 }

@@ -39,5 +39,11 @@ namespace VentaAutomoviles.Controllers
             return View();
         }
 
+        public ActionResult IndexCliente()
+        {
+
+            return View();
+        }
+
     }
 }

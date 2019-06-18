@@ -24,7 +24,7 @@ namespace VentaAutomoviles.Models
     
         public int IdFabrica { get; set; }
         public int IdDireccion { get; set; }
-        public int IdGerente { get; set; }
+        public Nullable<int> IdGerente { get; set; }
         public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

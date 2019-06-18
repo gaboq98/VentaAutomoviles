@@ -104,6 +104,9 @@
     <Property Name="IdProvincia" Type="int" Nullable="false" />
     <Property Name="IdCanton" Type="int" Nullable="false" />
     <Property Name="Señas" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="PuntoGeo" Type="geometry" />
+    <Property Name="Latitud" Type="float" />
+    <Property Name="Longitud" Type="float" />
   </EntityType>
   <EntityType Name="Empleado">
     <Key>
@@ -154,7 +157,7 @@
     </Key>
     <Property Name="IdFabrica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdDireccion" Type="int" Nullable="false" />
-    <Property Name="IdGerente" Type="int" Nullable="false" />
+    <Property Name="IdGerente" Type="int" />
     <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Factura">
@@ -258,7 +261,7 @@
     </Key>
     <Property Name="IdSucursal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdDireccion" Type="int" Nullable="false" />
-    <Property Name="IdGerente" Type="int" Nullable="false" />
+    <Property Name="IdGerente" Type="int" />
     <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="HoraApertura" Type="time" Precision="7" Nullable="false" />
     <Property Name="HoraCierre" Type="time" Precision="7" Nullable="false" />
@@ -908,18 +911,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_sucursal">
-    <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
-    <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Sucursal">
-        <PropertyRef Name="IdSucursal" />
-      </Principal>
-      <Dependent Role="Inventario">
-        <PropertyRef Name="IdSucursal" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="fk_sucursalConsignacion">
     <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
     <End Role="Consignacion" Type="Self.Consignacion" Multiplicity="*" />
@@ -955,18 +946,6 @@
       </Principal>
       <Dependent Role="Sucursal">
         <PropertyRef Name="IdDireccion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_sucursalPedido">
-    <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
-    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Sucursal">
-        <PropertyRef Name="IdSucursal" />
-      </Principal>
-      <Dependent Role="Pedido">
-        <PropertyRef Name="IdSucursal" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1086,7 +1065,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="AbonarPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idSucursal" Type="int" Mode="In" />
+    <Parameter Name="idCliente" Type="int" Mode="In" />
+    <Parameter Name="idAutomovil" Type="int" Mode="In" />
+    <Parameter Name="idTipoPago" Type="int" Mode="In" />
+    <Parameter Name="monto" Type="money" Mode="In" />
+  </Function>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="RetencionImpuestos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -1294,9 +1281,49 @@
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_InventarioDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdInventario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_InventarioInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdSucursal" Type="int" Mode="In" />
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+    <Parameter Name="CantidadDisponible" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_InventarioSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdInventario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_InventarioUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdInventario" Type="int" Mode="In" />
+    <Parameter Name="IdSucursal" Type="int" Mode="In" />
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+    <Parameter Name="CantidadDisponible" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="correo" Type="varchar" Mode="In" />
     <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_PedidoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_PedidoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdFabrica" Type="int" Mode="In" />
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+    <Parameter Name="IdSucursal" Type="int" Mode="In" />
+    <Parameter Name="IdCliente" Type="int" Mode="In" />
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+    <Parameter Name="FechaEntrega" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_PedidoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_PedidoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+    <Parameter Name="IdFabrica" Type="int" Mode="In" />
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+    <Parameter Name="IdSucursal" Type="int" Mode="In" />
+    <Parameter Name="IdCliente" Type="int" Mode="In" />
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+    <Parameter Name="FechaEntrega" Type="date" Mode="In" />
   </Function>
   <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -1562,10 +1589,6 @@
       <End Role="Pais" EntitySet="Pais" />
       <End Role="Provincia" EntitySet="Provincia" />
     </AssociationSet>
-    <AssociationSet Name="fk_sucursal" Association="Self.fk_sucursal">
-      <End Role="Sucursal" EntitySet="Sucursal" />
-      <End Role="Inventario" EntitySet="Inventario" />
-    </AssociationSet>
     <AssociationSet Name="fk_sucursalConsignacion" Association="Self.fk_sucursalConsignacion">
       <End Role="Sucursal" EntitySet="Sucursal" />
       <End Role="Consignacion" EntitySet="Consignacion" />
@@ -1577,10 +1600,6 @@
     <AssociationSet Name="fk_sucursalDireccion" Association="Self.fk_sucursalDireccion">
       <End Role="Direccion" EntitySet="Direccion" />
       <End Role="Sucursal" EntitySet="Sucursal" />
-    </AssociationSet>
-    <AssociationSet Name="fk_sucursalPedido" Association="Self.fk_sucursalPedido">
-      <End Role="Sucursal" EntitySet="Sucursal" />
-      <End Role="Pedido" EntitySet="Pedido" />
     </AssociationSet>
     <AssociationSet Name="fk_tipoAutomovil" Association="Self.fk_tipoAutomovil">
       <End Role="TipoAutomovil" EntitySet="TipoAutomovil" />

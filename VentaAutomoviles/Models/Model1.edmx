@@ -109,6 +109,9 @@
           <Property Name="IdProvincia" Type="int" Nullable="false" />
           <Property Name="IdCanton" Type="int" Nullable="false" />
           <Property Name="Señas" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="PuntoGeo" Type="geometry" />
+          <Property Name="Latitud" Type="float" />
+          <Property Name="Longitud" Type="float" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -159,7 +162,7 @@
           </Key>
           <Property Name="IdFabrica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdDireccion" Type="int" Nullable="false" />
-          <Property Name="IdGerente" Type="int" Nullable="false" />
+          <Property Name="IdGerente" Type="int" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Factura">
@@ -263,7 +266,7 @@
           </Key>
           <Property Name="IdSucursal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdDireccion" Type="int" Nullable="false" />
-          <Property Name="IdGerente" Type="int" Nullable="false" />
+          <Property Name="IdGerente" Type="int" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="HoraApertura" Type="time" Precision="7" Nullable="false" />
           <Property Name="HoraCierre" Type="time" Precision="7" Nullable="false" />
@@ -913,18 +916,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_sucursal">
-          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
-          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sucursal">
-              <PropertyRef Name="IdSucursal" />
-            </Principal>
-            <Dependent Role="Inventario">
-              <PropertyRef Name="IdSucursal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_sucursalConsignacion">
           <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
           <End Role="Consignacion" Type="Self.Consignacion" Multiplicity="*" />
@@ -960,18 +951,6 @@
             </Principal>
             <Dependent Role="Sucursal">
               <PropertyRef Name="IdDireccion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_sucursalPedido">
-          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="1" />
-          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sucursal">
-              <PropertyRef Name="IdSucursal" />
-            </Principal>
-            <Dependent Role="Pedido">
-              <PropertyRef Name="IdSucursal" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1091,7 +1070,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AbonarPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idSucursal" Type="int" Mode="In" />
+          <Parameter Name="idCliente" Type="int" Mode="In" />
+          <Parameter Name="idAutomovil" Type="int" Mode="In" />
+          <Parameter Name="idTipoPago" Type="int" Mode="In" />
+          <Parameter Name="monto" Type="money" Mode="In" />
+        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="RetencionImpuestos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -1299,9 +1286,49 @@
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_InventarioDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdInventario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InventarioInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdSucursal" Type="int" Mode="In" />
+          <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+          <Parameter Name="CantidadDisponible" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InventarioSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdInventario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InventarioUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdInventario" Type="int" Mode="In" />
+          <Parameter Name="IdSucursal" Type="int" Mode="In" />
+          <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+          <Parameter Name="CantidadDisponible" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="correo" Type="varchar" Mode="In" />
           <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_PedidoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_PedidoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdFabrica" Type="int" Mode="In" />
+          <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+          <Parameter Name="IdSucursal" Type="int" Mode="In" />
+          <Parameter Name="IdCliente" Type="int" Mode="In" />
+          <Parameter Name="Fecha" Type="date" Mode="In" />
+          <Parameter Name="FechaEntrega" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_PedidoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_PedidoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPedido" Type="int" Mode="In" />
+          <Parameter Name="IdFabrica" Type="int" Mode="In" />
+          <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+          <Parameter Name="IdSucursal" Type="int" Mode="In" />
+          <Parameter Name="IdCliente" Type="int" Mode="In" />
+          <Parameter Name="Fecha" Type="date" Mode="In" />
+          <Parameter Name="FechaEntrega" Type="date" Mode="In" />
         </Function>
         <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -1567,10 +1594,6 @@
             <End Role="Pais" EntitySet="Pais" />
             <End Role="Provincia" EntitySet="Provincia" />
           </AssociationSet>
-          <AssociationSet Name="fk_sucursal" Association="Self.fk_sucursal">
-            <End Role="Sucursal" EntitySet="Sucursal" />
-            <End Role="Inventario" EntitySet="Inventario" />
-          </AssociationSet>
           <AssociationSet Name="fk_sucursalConsignacion" Association="Self.fk_sucursalConsignacion">
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="Consignacion" EntitySet="Consignacion" />
@@ -1582,10 +1605,6 @@
           <AssociationSet Name="fk_sucursalDireccion" Association="Self.fk_sucursalDireccion">
             <End Role="Direccion" EntitySet="Direccion" />
             <End Role="Sucursal" EntitySet="Sucursal" />
-          </AssociationSet>
-          <AssociationSet Name="fk_sucursalPedido" Association="Self.fk_sucursalPedido">
-            <End Role="Sucursal" EntitySet="Sucursal" />
-            <End Role="Pedido" EntitySet="Pedido" />
           </AssociationSet>
           <AssociationSet Name="fk_tipoAutomovil" Association="Self.fk_tipoAutomovil">
             <End Role="TipoAutomovil" EntitySet="TipoAutomovil" />
@@ -1779,6 +1798,9 @@
           <NavigationProperty Name="EmpleadoFabrica" Relationship="Self.fk_empleadoFabricaDireccion" FromRole="Direccion" ToRole="EmpleadoFabrica" />
           <NavigationProperty Name="Fabrica" Relationship="Self.fk_fabricaDireccion" FromRole="Direccion" ToRole="Fabrica" />
           <NavigationProperty Name="Sucursal" Relationship="Self.fk_sucursalDireccion" FromRole="Direccion" ToRole="Sucursal" />
+          <Property Name="PuntoGeo" Type="Geometry" />
+          <Property Name="Latitud" Type="Double" />
+          <Property Name="Longitud" Type="Double" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -1839,7 +1861,7 @@
           </Key>
           <Property Name="IdFabrica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdDireccion" Type="Int32" Nullable="false" />
-          <Property Name="IdGerente" Type="Int32" Nullable="false" />
+          <Property Name="IdGerente" Type="Int32" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Despacho" Relationship="Self.fk_despachoFabrica" FromRole="Fabrica" ToRole="Despacho" />
           <NavigationProperty Name="Direccion" Relationship="Self.fk_fabricaDireccion" FromRole="Fabrica" ToRole="Direccion" />
@@ -1974,7 +1996,7 @@
           </Key>
           <Property Name="IdSucursal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdDireccion" Type="Int32" Nullable="false" />
-          <Property Name="IdGerente" Type="Int32" Nullable="false" />
+          <Property Name="IdGerente" Type="Int32" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HoraApertura" Type="Time" Nullable="false" Precision="7" />
           <Property Name="HoraCierre" Type="Time" Nullable="false" Precision="7" />
@@ -3268,6 +3290,54 @@
             <Parameter Name="idAutomovil" Mode="In" Type="Int32" />
             <Parameter Name="idTipoPago" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="AbonarPago">
+            <Parameter Name="idSucursal" Mode="In" Type="Int32" />
+            <Parameter Name="idCliente" Mode="In" Type="Int32" />
+            <Parameter Name="idAutomovil" Mode="In" Type="Int32" />
+            <Parameter Name="idTipoPago" Mode="In" Type="Int32" />
+            <Parameter Name="monto" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="RetencionImpuestos" />
+          <FunctionImport Name="sp_InventarioDelete">
+            <Parameter Name="IdInventario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InventarioInsert" ReturnType="Collection(VentaAutomovilesModel.sp_InventarioInsert_Result)">
+            <Parameter Name="IdSucursal" Mode="In" Type="Int32" />
+            <Parameter Name="IdAutomovil" Mode="In" Type="Int32" />
+            <Parameter Name="CantidadDisponible" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InventarioSelect" ReturnType="Collection(VentaAutomovilesModel.sp_InventarioSelect_Result)">
+            <Parameter Name="IdInventario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InventarioUpdate" ReturnType="Collection(VentaAutomovilesModel.sp_InventarioUpdate_Result)">
+            <Parameter Name="IdInventario" Mode="In" Type="Int32" />
+            <Parameter Name="IdSucursal" Mode="In" Type="Int32" />
+            <Parameter Name="IdAutomovil" Mode="In" Type="Int32" />
+            <Parameter Name="CantidadDisponible" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PedidoDelete">
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PedidoInsert" ReturnType="Collection(VentaAutomovilesModel.sp_PedidoInsert_Result)">
+            <Parameter Name="IdFabrica" Mode="In" Type="Int32" />
+            <Parameter Name="IdAutomovil" Mode="In" Type="Int32" />
+            <Parameter Name="IdSucursal" Mode="In" Type="Int32" />
+            <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaEntrega" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PedidoSelect" ReturnType="Collection(VentaAutomovilesModel.sp_PedidoSelect_Result)">
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PedidoUpdate" ReturnType="Collection(VentaAutomovilesModel.sp_PedidoUpdate_Result)">
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+            <Parameter Name="IdFabrica" Mode="In" Type="Int32" />
+            <Parameter Name="IdAutomovil" Mode="In" Type="Int32" />
+            <Parameter Name="IdSucursal" Mode="In" Type="Int32" />
+            <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaEntrega" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_AutomovilInsert_Result">
           <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
@@ -3560,6 +3630,51 @@
           <Property Type="Decimal" Name="Monto" Nullable="false" Precision="19" />
           <Property Type="Double" Name="Descuento" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="sp_InventarioInsert_Result">
+          <Property Type="Int32" Name="IdInventario" Nullable="false" />
+          <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+          <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+          <Property Type="Int32" Name="CantidadDisponible" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_InventarioSelect_Result">
+          <Property Type="Int32" Name="IdInventario" Nullable="false" />
+          <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+          <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+          <Property Type="Int32" Name="CantidadDisponible" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_InventarioUpdate_Result">
+          <Property Type="Int32" Name="IdInventario" Nullable="false" />
+          <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+          <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+          <Property Type="Int32" Name="CantidadDisponible" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_PedidoInsert_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="Int32" Name="IdFabrica" Nullable="false" />
+          <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+          <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+          <Property Type="Int32" Name="IdCliente" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_PedidoSelect_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="Int32" Name="IdFabrica" Nullable="false" />
+          <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+          <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+          <Property Type="Int32" Name="IdCliente" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_PedidoUpdate_Result">
+          <Property Type="Int32" Name="IdPedido" Nullable="false" />
+          <Property Type="Int32" Name="IdFabrica" Nullable="false" />
+          <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+          <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+          <Property Type="Int32" Name="IdCliente" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3674,6 +3789,9 @@
           <EntitySetMapping Name="Direccion">
             <EntityTypeMapping TypeName="VentaAutomovilesModel.Direccion">
               <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="PuntoGeo" ColumnName="PuntoGeo" />
                 <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
                 <ScalarProperty Name="IdPais" ColumnName="IdPais" />
                 <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
@@ -4353,6 +4471,79 @@
                 <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
                 <ScalarProperty Name="Monto" ColumnName="Monto" />
                 <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AbonarPago" FunctionName="VentaAutomovilesModel.Store.AbonarPago" />
+          <FunctionImportMapping FunctionImportName="RetencionImpuestos" FunctionName="VentaAutomovilesModel.Store.RetencionImpuestos" />
+          <FunctionImportMapping FunctionImportName="sp_InventarioDelete" FunctionName="VentaAutomovilesModel.Store.sp_InventarioDelete" />
+          <FunctionImportMapping FunctionImportName="sp_InventarioInsert" FunctionName="VentaAutomovilesModel.Store.sp_InventarioInsert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_InventarioInsert_Result">
+                <ScalarProperty Name="IdInventario" ColumnName="IdInventario" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+                <ScalarProperty Name="CantidadDisponible" ColumnName="CantidadDisponible" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_InventarioSelect" FunctionName="VentaAutomovilesModel.Store.sp_InventarioSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_InventarioSelect_Result">
+                <ScalarProperty Name="IdInventario" ColumnName="IdInventario" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+                <ScalarProperty Name="CantidadDisponible" ColumnName="CantidadDisponible" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_InventarioUpdate" FunctionName="VentaAutomovilesModel.Store.sp_InventarioUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_InventarioUpdate_Result">
+                <ScalarProperty Name="IdInventario" ColumnName="IdInventario" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+                <ScalarProperty Name="CantidadDisponible" ColumnName="CantidadDisponible" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_PedidoDelete" FunctionName="VentaAutomovilesModel.Store.sp_PedidoDelete" />
+          <FunctionImportMapping FunctionImportName="sp_PedidoInsert" FunctionName="VentaAutomovilesModel.Store.sp_PedidoInsert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_PedidoInsert_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdFabrica" ColumnName="IdFabrica" />
+                <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_PedidoSelect" FunctionName="VentaAutomovilesModel.Store.sp_PedidoSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_PedidoSelect_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdFabrica" ColumnName="IdFabrica" />
+                <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_PedidoUpdate" FunctionName="VentaAutomovilesModel.Store.sp_PedidoUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VentaAutomovilesModel.sp_PedidoUpdate_Result">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdFabrica" ColumnName="IdFabrica" />
+                <ScalarProperty Name="IdAutomovil" ColumnName="IdAutomovil" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

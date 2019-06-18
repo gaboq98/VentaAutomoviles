@@ -29,6 +29,9 @@ namespace VentaAutomoviles.Models
         public int IdProvincia { get; set; }
         public int IdCanton { get; set; }
         public string Señas { get; set; }
+        public System.Data.Entity.Spatial.DbGeometry PuntoGeo { get; set; }
+        public Nullable<double> Latitud { get; set; }
+        public Nullable<double> Longitud { get; set; }
     
         public virtual Canton Canton { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

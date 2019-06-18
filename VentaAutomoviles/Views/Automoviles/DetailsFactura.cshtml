@@ -5,65 +5,66 @@
 }
 
 <h2>Detalles</h2>
-<div class="row">
-    <hr />
-    <div class="column">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Marca.Nombre)
-            </dt>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca.Nombre)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Marca.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoAutomovil.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoAutomovil.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoCombustible.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoCombustible.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        @foreach (var foto in Model.Fotos)
+        {
             <dd>
-                @Html.DisplayFor(model => model.Marca.Nombre)
+                <img src="@Url.Action("Show", "Image", new { id = foto } ) " class="square rounded" />
             </dd>
+        }
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Modelo.Nombre)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Modelo.Nombre)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.TipoAutomovil.Descripcion)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.TipoAutomovil.Descripcion)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.TipoCombustible.Descripcion)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.TipoCombustible.Descripcion)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Precio)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Precio)
-            </dd>
-
-        </dl>
-    </div>
-    <div class="column">
-        <dl class="dl-horizontal">
-            @foreach (var foto in Model.Fotos)
-            {
-                <dd>
-                    <img src="@Url.Action("Show", "Image", new { id = foto } ) " class="square rounded" />
-                </dd>
-            }
-        </dl>
-    </div>
+        <dd>
+            <div>
+                @Html.ActionLink("Facturar", "Create", "Facturas",  new { id = Model.IdAutomovil }, new { @class = "btn btn-outline-primary mr-1" })
+            </div>
+        </dd>
+    </dl>
 </div>
 
 
+
 <div>
-    @Html.ActionLink("Volver", "Index", "Automoviles", new { @class = "btn btn-outline-primary mr-1" })
+    @Html.ActionLink("Volver", "Index", "Automoviles", null, new { @class = "btn btn-outline-primary mr-1" })
 </div>

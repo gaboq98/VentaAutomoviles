@@ -39,7 +39,7 @@ namespace VentaAutomoviles.Controllers
         }
 
         // GET: Facturas/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             ViewBag.IdCliente = new SelectList(db.Cliente, "IdCliente", "Cedula");
 
@@ -48,7 +48,7 @@ namespace VentaAutomoviles.Controllers
             var userId = currentUser.PhoneNumber;
             List<object> list = new List<object>
             {
-                db.Empleado.Find(userId)
+                db.Empleado.Find(System.Convert.ToInt32(userId))
             };
             IEnumerable<object> enumList = list;
             ViewBag.IdEmpleado = new SelectList(enumList, "IdEmpleado", "Nombre");
