@@ -1,0 +1,48 @@
+﻿@model VentaAutomoviles.Models.Automovil
+
+@{
+    ViewBag.Title = "DetailsCliente";
+}
+
+<h2>Automovil</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoAutomovil.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoAutomovil.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoCombustible.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoCombustible.Descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Volver", "IndexCliente", "Automoviles", null, new { @class = "btn btn-outline-primary mr-1" })
+</p>

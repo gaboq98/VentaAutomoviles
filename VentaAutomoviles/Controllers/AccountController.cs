@@ -178,11 +178,9 @@ namespace VentaAutomoviles.Controllers
         {
             if (ModelState.IsValid)
             {
-                /*
                 var spResult = db.sp_ClienteInsert(model.Pais, model.Provincia, model.Canton, model.Señas, model.Nombre, model.Cedula, model.Telefono, model.Email);
                 sp_ClienteInsert_Result cliente = spResult.ElementAt(0);
-                */
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber  = "3" /*cliente.IdCliente.ToString()*/ };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber  = cliente.IdCliente.ToString() };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

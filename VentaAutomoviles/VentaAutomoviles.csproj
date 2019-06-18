@@ -556,6 +556,8 @@
     <Content Include="Views\Automoviles\DetailsFactura.cshtml" />
     <Content Include="Views\Automoviles\Index.cshtml" />
     <Content Include="Views\Home\IndexCliente.cshtml" />
+    <Content Include="Views\Automoviles\IndexCliente.cshtml" />
+    <Content Include="Views\Automoviles\DetailsCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

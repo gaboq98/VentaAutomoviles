@@ -17,6 +17,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.IdAutomovil, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
+            <p>@ViewBag.IdAutomovil</p>
             @Html.TextBoxFor(m => m.IdAutomovil, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.IdAutomovil, "", new { @class = "text-danger" })
         </div>

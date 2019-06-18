@@ -55,6 +55,7 @@ namespace VentaAutomoviles.Controllers
 
             ViewBag.IdSucursal = new SelectList(db.Sucursal, "IdSucursal", "Nombre");
             ViewBag.IdTipoPago = new SelectList(db.TipoPago, "IdTipoPago", "Descripcion");
+            ViewBag.IdAutomovil = id;
             return View();
         }
 
@@ -68,6 +69,8 @@ namespace VentaAutomoviles.Controllers
             if (ModelState.IsValid)
             {
                 // TODO: Logica
+                var spResult = db.sp_FacturarCustom(factura.IdEmpleado, factura.IdSucursal, factura.IdCliente, factura.IdAutomovil, factura.IdTipoPago);
+                sp_FacturarCustom_Result cliente = spResult.ElementAt(0);
                 return RedirectToAction("IndexFacturador", "Home");
             }
 
