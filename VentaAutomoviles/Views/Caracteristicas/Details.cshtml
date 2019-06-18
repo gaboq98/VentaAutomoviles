@@ -1,0 +1,50 @@
+﻿@model VentaAutomoviles.Models.CaracteristicasPorAutomovil
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>CaracteristicasPorAutomovil</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Puertas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Puertas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pasajeros)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pasajeros)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Automovil.IdAutomovil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Automovil.IdAutomovil)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdCaracteristicaAutomovil }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

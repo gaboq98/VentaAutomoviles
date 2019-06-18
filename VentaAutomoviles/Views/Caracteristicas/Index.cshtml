@@ -1,0 +1,50 @@
+﻿@model IEnumerable<VentaAutomoviles.Models.CaracteristicasPorAutomovil>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Caracteristica</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva Caracteristica", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Puertas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pasajeros)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Automovil.IdAutomovil)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Color)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Puertas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pasajeros)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Automovil.IdAutomovil)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdCaracteristicaAutomovil }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdCaracteristicaAutomovil })
+        </td>
+    </tr>
+}
+
+</table>

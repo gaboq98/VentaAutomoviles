@@ -1,0 +1,44 @@
+﻿@model IEnumerable<VentaAutomoviles.Models.ExtrasPorAutomovil>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Extras por Automovil</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Automovil.IdAutomovil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Extra.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Automovil.IdAutomovil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Extra.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdExtraAutomovil }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdExtraAutomovil }) 
+        </td>
+    </tr>
+}
+
+</table>

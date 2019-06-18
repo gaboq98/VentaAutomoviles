@@ -1,0 +1,42 @@
+﻿@model VentaAutomoviles.Models.ExtrasPorAutomovil
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>ExtrasPorAutomovil</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Automovil.IdAutomovil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Automovil.IdAutomovil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extra.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extra.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdExtraAutomovil }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

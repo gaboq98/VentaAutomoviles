@@ -176,6 +176,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AutomovilesController.cs" />
+    <Compile Include="Controllers\CaracteristicasController.cs" />
+    <Compile Include="Controllers\ConsignacionesController.cs" />
+    <Compile Include="Controllers\ExtrasController.cs" />
+    <Compile Include="Controllers\ExtrasPorAutomovilesController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
@@ -556,6 +560,26 @@
     <Content Include="Views\Automoviles\DetailsFactura.cshtml" />
     <Content Include="Views\Automoviles\Index.cshtml" />
     <Content Include="Views\Home\IndexCliente.cshtml" />
+    <Content Include="Views\Consignaciones\Create.cshtml" />
+    <Content Include="Views\Consignaciones\Delete.cshtml" />
+    <Content Include="Views\Consignaciones\Details.cshtml" />
+    <Content Include="Views\Consignaciones\Edit.cshtml" />
+    <Content Include="Views\Consignaciones\Index.cshtml" />
+    <Content Include="Views\Caracteristicas\Create.cshtml" />
+    <Content Include="Views\Caracteristicas\Delete.cshtml" />
+    <Content Include="Views\Caracteristicas\Details.cshtml" />
+    <Content Include="Views\Caracteristicas\Edit.cshtml" />
+    <Content Include="Views\Caracteristicas\Index.cshtml" />
+    <Content Include="Views\Extras\Create.cshtml" />
+    <Content Include="Views\Extras\Delete.cshtml" />
+    <Content Include="Views\Extras\Details.cshtml" />
+    <Content Include="Views\Extras\Edit.cshtml" />
+    <Content Include="Views\Extras\Index.cshtml" />
+    <Content Include="Views\ExtrasPorAutomoviles\Create.cshtml" />
+    <Content Include="Views\ExtrasPorAutomoviles\Delete.cshtml" />
+    <Content Include="Views\ExtrasPorAutomoviles\Details.cshtml" />
+    <Content Include="Views\ExtrasPorAutomoviles\Edit.cshtml" />
+    <Content Include="Views\ExtrasPorAutomoviles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
