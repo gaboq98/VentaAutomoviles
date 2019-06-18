@@ -1452,9 +1452,12 @@
       <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_EmpleadoInsert" ReturnType="Collection(VentaAutomovilesModel.sp_EmpleadoInsert_Result)">
+      <Parameter Name="idPais" Mode="In" Type="Int32" />
+      <Parameter Name="idProvincia" Mode="In" Type="Int32" />
+      <Parameter Name="idCanton" Mode="In" Type="Int32" />
+      <Parameter Name="señas" Mode="In" Type="String" />
       <Parameter Name="IdTipoEmpleadoSucursal" Mode="In" Type="Int32" />
       <Parameter Name="IdSucursal" Mode="In" Type="Int32" />
-      <Parameter Name="IdDireccion" Mode="In" Type="Int32" />
       <Parameter Name="Nombre" Mode="In" Type="String" />
       <Parameter Name="Cedula" Mode="In" Type="String" />
       <Parameter Name="Telefono" Mode="In" Type="String" />
@@ -1690,6 +1693,59 @@
       <Parameter Name="IdCliente" Mode="In" Type="Int32" />
       <Parameter Name="Fecha" Mode="In" Type="DateTime" />
       <Parameter Name="FechaEntrega" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DespachoDelete">
+      <Parameter Name="IdDespacho" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DespachoInsert" ReturnType="Collection(VentaAutomovilesModel.sp_DespachoInsert_Result)">
+      <Parameter Name="IdFabrica" Mode="In" Type="Int32" />
+      <Parameter Name="IdSucursal" Mode="In" Type="Int32" />
+      <Parameter Name="IdAutomovil" Mode="In" Type="Int32" />
+      <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DespachoSelect" ReturnType="Collection(VentaAutomovilesModel.sp_DespachoSelect_Result)">
+      <Parameter Name="IdDespacho" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_DespachoUpdate" ReturnType="Collection(VentaAutomovilesModel.sp_DespachoUpdate_Result)">
+      <Parameter Name="IdDespacho" Mode="In" Type="Int32" />
+      <Parameter Name="IdFabrica" Mode="In" Type="Int32" />
+      <Parameter Name="IdSucursal" Mode="In" Type="Int32" />
+      <Parameter Name="IdAutomovil" Mode="In" Type="Int32" />
+      <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_consultar_ventas1" ReturnType="Collection(VentaAutomovilesModel.sp_consultar_ventas_Result)">
+      <Parameter Name="sucursal" Mode="In" Type="Int32" />
+      <Parameter Name="tipo" Mode="In" Type="Int32" />
+      <Parameter Name="pais" Mode="In" Type="Int32" />
+      <Parameter Name="fecha_inicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_consultar_ventasPorTipoPago1" ReturnType="Collection(VentaAutomovilesModel.sp_consultar_ventasPorTipoPago1_Result)">
+      <Parameter Name="sucursal" Mode="In" Type="Int32" />
+      <Parameter Name="tipo" Mode="In" Type="Int32" />
+      <Parameter Name="fecha_inicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_consultar_ventas2" ReturnType="Collection(VentaAutomovilesModel.sp_consultar_ventasCustom_Result)">
+      <Parameter Name="sucursal" Mode="In" Type="Int32" />
+      <Parameter Name="tipo" Mode="In" Type="Int32" />
+      <Parameter Name="pais" Mode="In" Type="Int32" />
+      <Parameter Name="fecha_inicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EmpleadoInsert1">
+      <Parameter Name="idPais" Mode="In" Type="Int32" />
+      <Parameter Name="idProvincia" Mode="In" Type="Int32" />
+      <Parameter Name="idCanton" Mode="In" Type="Int32" />
+      <Parameter Name="señas" Mode="In" Type="String" />
+      <Parameter Name="IdTipoEmpleadoSucursal" Mode="In" Type="Int32" />
+      <Parameter Name="IdSucursal" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Cedula" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_AutomovilInsert_Result">
@@ -2027,5 +2083,48 @@
     <Property Type="Int32" Name="IdCliente" Nullable="false" />
     <Property Type="DateTime" Name="Fecha" Nullable="false" />
     <Property Type="DateTime" Name="FechaEntrega" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_DespachoInsert_Result">
+    <Property Type="Int32" Name="IdDespacho" Nullable="false" />
+    <Property Type="Int32" Name="IdFabrica" Nullable="false" />
+    <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+    <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+    <Property Type="Int32" Name="IdPedido" Nullable="false" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_DespachoSelect_Result">
+    <Property Type="Int32" Name="IdDespacho" Nullable="false" />
+    <Property Type="Int32" Name="IdFabrica" Nullable="false" />
+    <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+    <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+    <Property Type="Int32" Name="IdPedido" Nullable="false" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_DespachoUpdate_Result">
+    <Property Type="Int32" Name="IdDespacho" Nullable="false" />
+    <Property Type="Int32" Name="IdFabrica" Nullable="false" />
+    <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+    <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+    <Property Type="Int32" Name="IdPedido" Nullable="false" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_consultar_ventasPorTipoPago1_Result">
+    <Property Type="Int32" Name="IdVenta" Nullable="false" />
+    <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+    <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+    <Property Type="Int32" Name="IdCliente" Nullable="false" />
+    <Property Type="Decimal" Name="Monto" Nullable="false" Precision="19" />
+    <Property Type="Int32" Name="IdTipoPago" Nullable="false" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_consultar_ventasCustom_Result">
+    <Property Type="Int32" Name="IdVenta" Nullable="false" />
+    <Property Type="Int32" Name="IdAutomovil" Nullable="false" />
+    <Property Type="Int32" Name="IdTipoAutomovil" Nullable="false" />
+    <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+    <Property Type="Int32" Name="IdPais" Nullable="false" />
+    <Property Type="Int32" Name="IdCliente" Nullable="false" />
+    <Property Type="Decimal" Name="Monto" Nullable="false" Precision="19" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" />
   </ComplexType>
 </Schema>

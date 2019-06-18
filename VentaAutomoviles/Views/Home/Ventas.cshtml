@@ -1,0 +1,63 @@
+﻿@model IEnumerable<VentaAutomoviles.Models.sp_consultar_ventasCustom_Result>
+
+@{
+    ViewBag.Title = "Ventas";
+}
+
+<h2>Ventas</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdAutomovil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTipoAutomovil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdSucursal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdPais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Monto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdAutomovil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdTipoAutomovil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdSucursal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdPais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Monto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Volver", "Index", "Home",null, new { @class = "btn btn-outline-primary mr-1" })
+</div>

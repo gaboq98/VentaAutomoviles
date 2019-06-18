@@ -337,8 +337,24 @@ namespace VentaAutomoviles.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EmpleadoDelete", idEmpleadoParameter);
         }
     
-        public virtual ObjectResult<sp_EmpleadoInsert_Result> sp_EmpleadoInsert(Nullable<int> idTipoEmpleadoSucursal, Nullable<int> idSucursal, Nullable<int> idDireccion, string nombre, string cedula, string telefono, string email)
+        public virtual ObjectResult<sp_EmpleadoInsert_Result> sp_EmpleadoInsert(Nullable<int> idPais, Nullable<int> idProvincia, Nullable<int> idCanton, string señas, Nullable<int> idTipoEmpleadoSucursal, Nullable<int> idSucursal, string nombre, string cedula, string telefono, string email)
         {
+            var idPaisParameter = idPais.HasValue ?
+                new ObjectParameter("idPais", idPais) :
+                new ObjectParameter("idPais", typeof(int));
+    
+            var idProvinciaParameter = idProvincia.HasValue ?
+                new ObjectParameter("idProvincia", idProvincia) :
+                new ObjectParameter("idProvincia", typeof(int));
+    
+            var idCantonParameter = idCanton.HasValue ?
+                new ObjectParameter("idCanton", idCanton) :
+                new ObjectParameter("idCanton", typeof(int));
+    
+            var señasParameter = señas != null ?
+                new ObjectParameter("señas", señas) :
+                new ObjectParameter("señas", typeof(string));
+    
             var idTipoEmpleadoSucursalParameter = idTipoEmpleadoSucursal.HasValue ?
                 new ObjectParameter("IdTipoEmpleadoSucursal", idTipoEmpleadoSucursal) :
                 new ObjectParameter("IdTipoEmpleadoSucursal", typeof(int));
@@ -346,10 +362,6 @@ namespace VentaAutomoviles.Models
             var idSucursalParameter = idSucursal.HasValue ?
                 new ObjectParameter("IdSucursal", idSucursal) :
                 new ObjectParameter("IdSucursal", typeof(int));
-    
-            var idDireccionParameter = idDireccion.HasValue ?
-                new ObjectParameter("IdDireccion", idDireccion) :
-                new ObjectParameter("IdDireccion", typeof(int));
     
             var nombreParameter = nombre != null ?
                 new ObjectParameter("Nombre", nombre) :
@@ -367,7 +379,7 @@ namespace VentaAutomoviles.Models
                 new ObjectParameter("Email", email) :
                 new ObjectParameter("Email", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_EmpleadoInsert_Result>("sp_EmpleadoInsert", idTipoEmpleadoSucursalParameter, idSucursalParameter, idDireccionParameter, nombreParameter, cedulaParameter, telefonoParameter, emailParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_EmpleadoInsert_Result>("sp_EmpleadoInsert", idPaisParameter, idProvinciaParameter, idCantonParameter, señasParameter, idTipoEmpleadoSucursalParameter, idSucursalParameter, nombreParameter, cedulaParameter, telefonoParameter, emailParameter);
         }
     
         public virtual ObjectResult<sp_EmpleadoSelect_Result> sp_EmpleadoSelect(Nullable<int> idEmpleado)
@@ -1143,6 +1155,194 @@ namespace VentaAutomoviles.Models
                 new ObjectParameter("FechaEntrega", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_PedidoUpdate_Result>("sp_PedidoUpdate", idPedidoParameter, idFabricaParameter, idAutomovilParameter, idSucursalParameter, idClienteParameter, fechaParameter, fechaEntregaParameter);
+        }
+    
+        public virtual int sp_DespachoDelete(Nullable<int> idDespacho)
+        {
+            var idDespachoParameter = idDespacho.HasValue ?
+                new ObjectParameter("IdDespacho", idDespacho) :
+                new ObjectParameter("IdDespacho", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DespachoDelete", idDespachoParameter);
+        }
+    
+        public virtual ObjectResult<sp_DespachoInsert_Result> sp_DespachoInsert(Nullable<int> idFabrica, Nullable<int> idSucursal, Nullable<int> idAutomovil, Nullable<int> idPedido, Nullable<System.DateTime> fecha)
+        {
+            var idFabricaParameter = idFabrica.HasValue ?
+                new ObjectParameter("IdFabrica", idFabrica) :
+                new ObjectParameter("IdFabrica", typeof(int));
+    
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("IdSucursal", idSucursal) :
+                new ObjectParameter("IdSucursal", typeof(int));
+    
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("IdAutomovil", idAutomovil) :
+                new ObjectParameter("IdAutomovil", typeof(int));
+    
+            var idPedidoParameter = idPedido.HasValue ?
+                new ObjectParameter("IdPedido", idPedido) :
+                new ObjectParameter("IdPedido", typeof(int));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_DespachoInsert_Result>("sp_DespachoInsert", idFabricaParameter, idSucursalParameter, idAutomovilParameter, idPedidoParameter, fechaParameter);
+        }
+    
+        public virtual ObjectResult<sp_DespachoSelect_Result> sp_DespachoSelect(Nullable<int> idDespacho)
+        {
+            var idDespachoParameter = idDespacho.HasValue ?
+                new ObjectParameter("IdDespacho", idDespacho) :
+                new ObjectParameter("IdDespacho", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_DespachoSelect_Result>("sp_DespachoSelect", idDespachoParameter);
+        }
+    
+        public virtual ObjectResult<sp_DespachoUpdate_Result> sp_DespachoUpdate(Nullable<int> idDespacho, Nullable<int> idFabrica, Nullable<int> idSucursal, Nullable<int> idAutomovil, Nullable<int> idPedido, Nullable<System.DateTime> fecha)
+        {
+            var idDespachoParameter = idDespacho.HasValue ?
+                new ObjectParameter("IdDespacho", idDespacho) :
+                new ObjectParameter("IdDespacho", typeof(int));
+    
+            var idFabricaParameter = idFabrica.HasValue ?
+                new ObjectParameter("IdFabrica", idFabrica) :
+                new ObjectParameter("IdFabrica", typeof(int));
+    
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("IdSucursal", idSucursal) :
+                new ObjectParameter("IdSucursal", typeof(int));
+    
+            var idAutomovilParameter = idAutomovil.HasValue ?
+                new ObjectParameter("IdAutomovil", idAutomovil) :
+                new ObjectParameter("IdAutomovil", typeof(int));
+    
+            var idPedidoParameter = idPedido.HasValue ?
+                new ObjectParameter("IdPedido", idPedido) :
+                new ObjectParameter("IdPedido", typeof(int));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_DespachoUpdate_Result>("sp_DespachoUpdate", idDespachoParameter, idFabricaParameter, idSucursalParameter, idAutomovilParameter, idPedidoParameter, fechaParameter);
+        }
+    
+        public virtual ObjectResult<sp_consultar_ventas_Result> sp_consultar_ventas1(Nullable<int> sucursal, Nullable<int> tipo, Nullable<int> pais, Nullable<System.DateTime> fecha_inicio, Nullable<System.DateTime> fecha_fin)
+        {
+            var sucursalParameter = sucursal.HasValue ?
+                new ObjectParameter("sucursal", sucursal) :
+                new ObjectParameter("sucursal", typeof(int));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(int));
+    
+            var paisParameter = pais.HasValue ?
+                new ObjectParameter("pais", pais) :
+                new ObjectParameter("pais", typeof(int));
+    
+            var fecha_inicioParameter = fecha_inicio.HasValue ?
+                new ObjectParameter("fecha_inicio", fecha_inicio) :
+                new ObjectParameter("fecha_inicio", typeof(System.DateTime));
+    
+            var fecha_finParameter = fecha_fin.HasValue ?
+                new ObjectParameter("fecha_fin", fecha_fin) :
+                new ObjectParameter("fecha_fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_consultar_ventas_Result>("sp_consultar_ventas1", sucursalParameter, tipoParameter, paisParameter, fecha_inicioParameter, fecha_finParameter);
+        }
+    
+        public virtual ObjectResult<sp_consultar_ventasPorTipoPago1_Result> sp_consultar_ventasPorTipoPago1(Nullable<int> sucursal, Nullable<int> tipo, Nullable<System.DateTime> fecha_inicio, Nullable<System.DateTime> fecha_fin)
+        {
+            var sucursalParameter = sucursal.HasValue ?
+                new ObjectParameter("sucursal", sucursal) :
+                new ObjectParameter("sucursal", typeof(int));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(int));
+    
+            var fecha_inicioParameter = fecha_inicio.HasValue ?
+                new ObjectParameter("fecha_inicio", fecha_inicio) :
+                new ObjectParameter("fecha_inicio", typeof(System.DateTime));
+    
+            var fecha_finParameter = fecha_fin.HasValue ?
+                new ObjectParameter("fecha_fin", fecha_fin) :
+                new ObjectParameter("fecha_fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_consultar_ventasPorTipoPago1_Result>("sp_consultar_ventasPorTipoPago1", sucursalParameter, tipoParameter, fecha_inicioParameter, fecha_finParameter);
+        }
+    
+        public virtual ObjectResult<sp_consultar_ventasCustom_Result> sp_consultar_ventas2(Nullable<int> sucursal, Nullable<int> tipo, Nullable<int> pais, Nullable<System.DateTime> fecha_inicio, Nullable<System.DateTime> fecha_fin)
+        {
+            var sucursalParameter = sucursal.HasValue ?
+                new ObjectParameter("sucursal", sucursal) :
+                new ObjectParameter("sucursal", typeof(int));
+    
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(int));
+    
+            var paisParameter = pais.HasValue ?
+                new ObjectParameter("pais", pais) :
+                new ObjectParameter("pais", typeof(int));
+    
+            var fecha_inicioParameter = fecha_inicio.HasValue ?
+                new ObjectParameter("fecha_inicio", fecha_inicio) :
+                new ObjectParameter("fecha_inicio", typeof(System.DateTime));
+    
+            var fecha_finParameter = fecha_fin.HasValue ?
+                new ObjectParameter("fecha_fin", fecha_fin) :
+                new ObjectParameter("fecha_fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_consultar_ventasCustom_Result>("sp_consultar_ventas2", sucursalParameter, tipoParameter, paisParameter, fecha_inicioParameter, fecha_finParameter);
+        }
+    
+        public virtual int sp_EmpleadoInsert1(Nullable<int> idPais, Nullable<int> idProvincia, Nullable<int> idCanton, string señas, Nullable<int> idTipoEmpleadoSucursal, Nullable<int> idSucursal, string nombre, string cedula, string telefono, string email)
+        {
+            var idPaisParameter = idPais.HasValue ?
+                new ObjectParameter("idPais", idPais) :
+                new ObjectParameter("idPais", typeof(int));
+    
+            var idProvinciaParameter = idProvincia.HasValue ?
+                new ObjectParameter("idProvincia", idProvincia) :
+                new ObjectParameter("idProvincia", typeof(int));
+    
+            var idCantonParameter = idCanton.HasValue ?
+                new ObjectParameter("idCanton", idCanton) :
+                new ObjectParameter("idCanton", typeof(int));
+    
+            var señasParameter = señas != null ?
+                new ObjectParameter("señas", señas) :
+                new ObjectParameter("señas", typeof(string));
+    
+            var idTipoEmpleadoSucursalParameter = idTipoEmpleadoSucursal.HasValue ?
+                new ObjectParameter("IdTipoEmpleadoSucursal", idTipoEmpleadoSucursal) :
+                new ObjectParameter("IdTipoEmpleadoSucursal", typeof(int));
+    
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("IdSucursal", idSucursal) :
+                new ObjectParameter("IdSucursal", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("Cedula", cedula) :
+                new ObjectParameter("Cedula", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EmpleadoInsert1", idPaisParameter, idProvinciaParameter, idCantonParameter, señasParameter, idTipoEmpleadoSucursalParameter, idSucursalParameter, nombreParameter, cedulaParameter, telefonoParameter, emailParameter);
         }
     }
 }

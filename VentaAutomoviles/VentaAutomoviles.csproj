@@ -327,10 +327,25 @@
     <Compile Include="Models\sp_consultar_productos_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_consultar_ventasCustom_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_consultar_ventasPorTipoPago1_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_consultar_ventasPorTipoPago_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_consultar_ventas_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_DespachoInsert_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_DespachoSelect_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_DespachoUpdate_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_EmpleadoInsert_Result.cs">
@@ -582,6 +597,9 @@
     <Content Include="Views\ExtrasPorAutomoviles\Details.cshtml" />
     <Content Include="Views\ExtrasPorAutomoviles\Edit.cshtml" />
     <Content Include="Views\ExtrasPorAutomoviles\Index.cshtml" />
+    <Content Include="Views\Home\Ventas.cshtml" />
+    <Content Include="Views\Home\VentasTipoPago.cshtml" />
+    <Content Include="Views\Account\RegisterEmpleado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

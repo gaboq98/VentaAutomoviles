@@ -1,0 +1,58 @@
+﻿@model IEnumerable<VentaAutomoviles.Models.sp_consultar_ventasPorTipoPago1_Result>
+
+@{
+    ViewBag.Title = "VentasTipoPago";
+}
+
+<h2>Ventas por Tipo de Pago</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdSucursal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdAutomovil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Monto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTipoPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdSucursal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdAutomovil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Monto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdTipoPago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Volver", "Index", "Home",null, new { @class = "btn btn-outline-primary mr-1" })
+</div>

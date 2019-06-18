@@ -174,7 +174,7 @@ namespace VentaAutomoviles.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterEmpleadoViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -185,6 +185,57 @@ namespace VentaAutomoviles.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+                    return RedirectToAction("IndexCliente", "Home");
+                }
+                AddErrors(result);
+            }
+            List<object> list = new List<object>
+            {
+                db.Pais.Find(52) // Para que sea solo CR
+            };
+            IEnumerable<object> en = list;
+            ViewBag.IdPais = new SelectList(en, "IdPais", "Nombre");
+            ViewBag.IdProvincia = new SelectList(db.Provincia, "IdProvincia", "Nombre");
+            ViewBag.IdCanton = new SelectList(db.Canton, "IdCanton", "Nombre");
+            // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
+            return View(model);
+        }
+
+        //
+        // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult RegisterEmpleado()
+        {
+            List<object> list = new List<object>
+            {
+                db.Pais.Find(52) // Para que sea solo CR
+            };
+            IEnumerable<object> en = list;
+            ViewBag.IdPais = new SelectList(en, "IdPais", "Nombre");
+            ViewBag.IdProvincia = new SelectList(db.Provincia, "IdProvincia", "Nombre");
+            ViewBag.IdCanton = new SelectList(db.Canton, "IdCanton", "Nombre");
+            ViewBag.IdTipoEmpleado = new SelectList(db.TipoEmpleadoSucursal, "IdTipoEmpleadoSucursal", "Descripcion");
+            ViewBag.IdSucursal = new SelectList(db.Sucursal, "IdSucursal", "Nombre");
+            return View();
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterEmpleado(RegisterEmpleadoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var spResult = db.sp_EmpleadoInsert(model.Pais, model.Provincia, model.Canton, model.Señas, model.IdTipoEmpleado, model.IdSucursal, model.Nombre, model.Cedula, model.Telefono, model.Email);
+                sp_EmpleadoInsert_Result empleado = spResult.ElementAt(0);
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = empleado.IdEmpleado.ToString() };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -198,6 +249,8 @@ namespace VentaAutomoviles.Controllers
             ViewBag.IdPais = new SelectList(en, "IdPais", "Nombre");
             ViewBag.IdProvincia = new SelectList(db.Provincia, "IdProvincia", "Nombre");
             ViewBag.IdCanton = new SelectList(db.Canton, "IdCanton", "Nombre");
+            ViewBag.IdTipoEmpleado = new SelectList(db.TipoEmpleadoSucursal, "IdTipoEmpleado", "Descripcion");
+            ViewBag.IdSucursal = new SelectList(db.Sucursal, "IdSucursal", "Nombre");
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
             return View(model);
         }

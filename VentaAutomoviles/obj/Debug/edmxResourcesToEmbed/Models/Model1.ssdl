@@ -1182,6 +1182,27 @@
     <Parameter Name="version" Type="int" Mode="In" />
     <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
   </Function>
+  <Function Name="sp_DespachoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdDespacho" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_DespachoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdFabrica" Type="int" Mode="In" />
+    <Parameter Name="IdSucursal" Type="int" Mode="In" />
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_DespachoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdDespacho" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_DespachoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdDespacho" Type="int" Mode="In" />
+    <Parameter Name="IdFabrica" Type="int" Mode="In" />
+    <Parameter Name="IdSucursal" Type="int" Mode="In" />
+    <Parameter Name="IdAutomovil" Type="int" Mode="In" />
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+    <Parameter Name="Fecha" Type="date" Mode="In" />
+  </Function>
   <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -1190,9 +1211,12 @@
     <Parameter Name="IdEmpleado" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_EmpleadoInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idPais" Type="int" Mode="In" />
+    <Parameter Name="idProvincia" Type="int" Mode="In" />
+    <Parameter Name="idCanton" Type="int" Mode="In" />
+    <Parameter Name="señas" Type="varchar" Mode="In" />
     <Parameter Name="IdTipoEmpleadoSucursal" Type="int" Mode="In" />
     <Parameter Name="IdSucursal" Type="int" Mode="In" />
-    <Parameter Name="IdDireccion" Type="int" Mode="In" />
     <Parameter Name="Nombre" Type="varchar" Mode="In" />
     <Parameter Name="Cedula" Type="varchar" Mode="In" />
     <Parameter Name="Telefono" Type="varchar" Mode="In" />

@@ -11,11 +11,15 @@ namespace VentaAutomoviles.Controllers
 {
     public class HomeController : Controller
     {
+        private VentaAutomovilesEntities db = new VentaAutomovilesEntities();
+
         public ActionResult Index()
         {
+            /*
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = manager.FindById(User.Identity.GetUserId());
             ViewBag.ID = currentUser.PhoneNumber;
+            */
             return View();
         }
 
@@ -44,6 +48,26 @@ namespace VentaAutomoviles.Controllers
 
             return View();
         }
+
+
+        public ActionResult Ventas()
+        {
+            var spRes = db.sp_consultar_ventas2(null,null,null,null,null);
+            return View(spRes);
+        }
+        
+        public ActionResult VentasTipoPago()
+        {
+            var spRes = db.sp_consultar_ventasPorTipoPago1( null, null, null, null);
+            return View(spRes);
+        }
+
+        public ActionResult RegistrarEmpleado()
+        {
+
+            return View();
+        }
+
 
     }
 }
