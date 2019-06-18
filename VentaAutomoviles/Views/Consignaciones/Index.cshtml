@@ -1,0 +1,44 @@
+﻿@model IEnumerable<VentaAutomoviles.Models.Consignacion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Consignaciones</h2>
+
+<p>
+    @Html.ActionLink("Crear nueva consignacion", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Comision)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Automovil.IdAutomovil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sucursal.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comision)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Automovil.IdAutomovil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sucursal.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdConsignacion }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdConsignacion }) 
+        </td>
+    </tr>
+}
+
+</table>

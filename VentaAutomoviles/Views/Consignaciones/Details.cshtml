@@ -1,0 +1,42 @@
+﻿@model VentaAutomoviles.Models.Consignacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Consignacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Comision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Automovil.IdAutomovil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Automovil.IdAutomovil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sucursal.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sucursal.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdConsignacion }) |
+    @Html.ActionLink("Volver", "Index")
+</p>
